@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # BrandGuard AI — Pre-Publication Brand Review & Compliance Engine
 
 BrandGuard AI is an automated brand governance and compliance review platform. It protects brand integrity, enforces legal claim substantiation, prevents non-inclusive or forbidden terminology, and ensures digital accessibility standards before content is published.
