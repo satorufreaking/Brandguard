@@ -1,0 +1,195 @@
+export const SEED_RULES = [
+  {
+    id: 'R-1',
+    code: 'R-1',
+    category: 'claim_substantiation',
+    severity: 'high',
+    text: "No absolute claims (guaranteed, best, #1) without an approved source.",
+    summary: "Prohibits unqualified absolute claims or quantifiable performance guarantees.",
+    active: true,
+    version: 'v1.2',
+    standard: 'ASCI Code Sec 1.4 & FTC Advertising Substantiation Policy',
+  },
+  {
+    id: 'R-7',
+    code: 'R-7',
+    category: 'terminology',
+    severity: 'medium',
+    text: "Use 'customers', not 'users'.",
+    summary: "Brand voice standard requiring audience to be addressed as customers.",
+    active: true,
+    version: 'v1.0',
+    standard: 'Acme Fintech Voice & Tone Guide § 3.2',
+  },
+  {
+    id: 'A-2',
+    code: 'A-2',
+    category: 'accessibility',
+    severity: 'low',
+    text: "No 'click here' link text.",
+    summary: "WCAG 2.1 link clarity requirement. Non-descriptive links are prohibited.",
+    active: true,
+    version: 'v1.1',
+    standard: 'WCAG 2.1 Success Criterion 2.4.4 (Link Purpose in Context)',
+  },
+  {
+    id: 'R-4',
+    code: 'R-4',
+    category: 'trademark',
+    severity: 'medium',
+    text: "Always capitalize 'Acme' and 'Acme Fintech' as proper nouns.",
+    summary: "Corporate branding identity standard.",
+    active: true,
+    version: 'v1.0',
+    standard: 'Brand Style Guide § 1.1',
+  },
+  {
+    id: 'R-9',
+    code: 'R-9',
+    category: 'compliance',
+    severity: 'high',
+    text: "Promotional rate disclosures must include APR and fee disclaimers.",
+    summary: "Truth-in-lending statutory disclosure requirements.",
+    active: true,
+    version: 'v1.3',
+    standard: 'CFPB Regulation Z & Truth in Lending Act',
+  },
+];
+
+export const SEED_FACTS = [
+  {
+    id: 'fact-1',
+    subject: 'Productivity Improvement',
+    value: 'Average 28% efficiency boost verified across 40 beta deployments',
+    source: '2025 Acme Enterprise Benchmark Study § 4.1',
+    validUntil: '2027-12-31',
+  },
+  {
+    id: 'fact-2',
+    subject: 'Active Customer Base',
+    value: '12,000+ active enterprise financial institutions',
+    source: 'Q3 2026 Verified Metrics Report',
+    validUntil: '2027-06-30',
+  },
+  {
+    id: 'fact-3',
+    subject: 'Platform Availability SLA',
+    value: '99.95% verified uptime over past 24 rolling months',
+    source: 'Acme Infrastructure Audit 2026',
+    validUntil: '2027-01-01',
+  },
+];
+
+export const INITIAL_DRAFT_TEXT =
+  "Our software is guaranteed to double every customer's productivity. Join users today. CLICK HERE to learn more.";
+
+export const SEED_DRAFTS = [
+  {
+    id: 'draft-1',
+    title: 'Q4 Growth Announcement & Social Copy',
+    submitter: 'Sarah Chen (Marketing)',
+    status: 'In review',
+    currentVersion: 'v2',
+    currentText: INITIAL_DRAFT_TEXT,
+    revisions: [
+      {
+        version: 'v1',
+        text: "Our software is guaranteed to double every user's productivity. Join users today. Click here to learn more.",
+        note: 'Initial raw copy',
+        createdAt: new Date(Date.now() - 3600000 * 2),
+      },
+      {
+        version: 'v2',
+        text: INITIAL_DRAFT_TEXT,
+        note: 'Corrected customer phrasing in lead paragraph',
+        createdAt: new Date(Date.now() - 3600000),
+      },
+    ],
+  },
+  {
+    id: 'draft-2',
+    title: 'Acme Card Rewards Promotion',
+    submitter: 'Alex Rivera (Agency)',
+    status: 'Changes requested',
+    currentVersion: 'v1',
+    currentText: 'Best card #1 guaranteed rewards with zero fees for all users. CLICK HERE.',
+    revisions: [
+      {
+        version: 'v1',
+        text: 'Best card #1 guaranteed rewards with zero fees for all users. CLICK HERE.',
+        note: 'Agency submission',
+        createdAt: new Date(Date.now() - 3600000 * 3),
+      },
+    ],
+  },
+  {
+    id: 'draft-3',
+    title: 'API Platform Launch Announcement',
+    submitter: 'Devon Vance (Product)',
+    status: 'Approved',
+    currentVersion: 'v3',
+    currentText: 'Acme Fintech delivers reliable infrastructure for enterprise customers worldwide.',
+    revisions: [
+      {
+        version: 'v1',
+        text: 'Acme Fintech delivers infrastructure for users.',
+        note: 'First draft',
+        createdAt: new Date(Date.now() - 3600000 * 5),
+      },
+      {
+        version: 'v3',
+        text: 'Acme Fintech delivers reliable infrastructure for enterprise customers worldwide.',
+        note: 'Approved compliant version',
+        createdAt: new Date(Date.now() - 3600000 * 4),
+      },
+    ],
+  },
+];
+
+export const SEED_AUDIT_LOGS = [
+  {
+    id: 'audit-1',
+    actor: 'Alex Rivera (Creator)',
+    action: 'Saved revision',
+    from: 'v1',
+    to: 'v2',
+    comment: "Applied suggested fix for terminology rule R-7 ('users' -> 'customers').",
+    time: '10 mins ago',
+  },
+  {
+    id: 'audit-2',
+    actor: 'System (Engine)',
+    action: 'Evaluated draft',
+    from: 'Raw Draft',
+    to: 'Validated',
+    comment: '4 findings validated, 2 rejected (unknown rule ID)',
+    time: '14 mins ago',
+  },
+  {
+    id: 'audit-3',
+    actor: 'Sarah Chen (Reviewer)',
+    action: 'Requested changes',
+    from: 'In review',
+    to: 'Changes requested',
+    comment: 'Please attach substantiation for the 2x performance guarantee before publication.',
+    time: '1 hour ago',
+  },
+  {
+    id: 'audit-4',
+    actor: 'Alex Rivera (Creator)',
+    action: 'Submitted draft',
+    from: 'Draft',
+    to: 'In review',
+    comment: 'Initial draft submission for Q4 campaign review.',
+    time: '2 hours ago',
+  },
+  {
+    id: 'audit-5',
+    actor: 'Marcus Brody (Admin)',
+    action: 'Updated rule',
+    from: 'R-1 v1.1',
+    to: 'R-1 v1.2',
+    comment: 'Clarified standard for performance multipliers under ASCI advertising code.',
+    time: '1 day ago',
+  },
+];

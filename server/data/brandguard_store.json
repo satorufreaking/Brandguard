@@ -1,0 +1,802 @@
+{
+  "rules": [
+    {
+      "id": "R-1",
+      "code": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "text": "No absolute claims (guaranteed, best, #1) without an approved source.",
+      "summary": "Prohibits unqualified absolute claims or quantifiable performance guarantees.",
+      "active": true,
+      "version": "v1.2",
+      "standard": "ASCI Code Sec 1.4 & FTC Advertising Substantiation Policy"
+    },
+    {
+      "id": "R-7",
+      "code": "R-7",
+      "category": "terminology",
+      "severity": "medium",
+      "text": "Use 'customers', not 'users'.",
+      "summary": "Brand voice standard requiring audience to be addressed as customers.",
+      "active": true,
+      "version": "v1.0",
+      "standard": "Acme Fintech Voice & Tone Guide § 3.2"
+    },
+    {
+      "id": "A-2",
+      "code": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "text": "No 'click here' link text.",
+      "summary": "WCAG 2.1 link clarity requirement. Non-descriptive links are prohibited.",
+      "active": true,
+      "version": "v1.1",
+      "standard": "WCAG 2.1 Success Criterion 2.4.4 (Link Purpose in Context)"
+    },
+    {
+      "id": "R-4",
+      "code": "R-4",
+      "category": "trademark",
+      "severity": "medium",
+      "text": "Always capitalize 'Acme' and 'Acme Fintech' as proper nouns.",
+      "summary": "Corporate branding identity standard.",
+      "active": true,
+      "version": "v1.0",
+      "standard": "Brand Style Guide § 1.1"
+    },
+    {
+      "id": "R-9",
+      "code": "R-9",
+      "category": "compliance",
+      "severity": "high",
+      "text": "Promotional rate disclosures must include APR and fee disclaimers.",
+      "summary": "Truth-in-lending statutory disclosure requirements.",
+      "active": true,
+      "version": "v1.3",
+      "standard": "CFPB Regulation Z & Truth in Lending Act"
+    }
+  ],
+  "facts": [
+    {
+      "id": "fact-1",
+      "subject": "Productivity Improvement",
+      "value": "Average 28% efficiency boost verified across 40 beta deployments",
+      "source": "2025 Acme Enterprise Benchmark Study § 4.1",
+      "validUntil": "2027-12-31"
+    },
+    {
+      "id": "fact-2",
+      "subject": "Active Customer Base",
+      "value": "12,000+ active enterprise financial institutions",
+      "source": "Q3 2026 Verified Metrics Report",
+      "validUntil": "2027-06-30"
+    },
+    {
+      "id": "fact-3",
+      "subject": "Platform Availability SLA",
+      "value": "99.95% verified uptime over past 24 rolling months",
+      "source": "Acme Infrastructure Audit 2026",
+      "validUntil": "2027-01-01"
+    }
+  ],
+  "drafts": [
+    {
+      "id": "draft-1",
+      "title": "Q4 Growth Announcement & Social Copy",
+      "submitter": "Sarah Chen (Marketing)",
+      "status": "Approved",
+      "currentVersion": "v5",
+      "currentText": "Our software is can help improve every customer's productivity. Join customers today. Learn more about pricing to learn more.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Our software is guaranteed to double every user's productivity. Join users today. Click here to learn more.",
+          "note": "Initial raw copy",
+          "createdAt": "2026-10-23T14:36:45.112Z"
+        },
+        {
+          "version": "v2",
+          "text": "Our software is guaranteed to double every customer's productivity. Join users today. CLICK HERE to learn more.",
+          "note": "Corrected customer phrasing in lead paragraph",
+          "createdAt": "2026-10-23T15:36:45.113Z"
+        },
+        {
+          "version": "v3",
+          "text": "Our software is guaranteed to double every customer's productivity. Join customers today. CLICK HERE to learn more.",
+          "note": "Applied suggested correction for rule R-7",
+          "fixedRule": "R-7",
+          "createdAt": "2026-10-23T16:36:45.235Z"
+        },
+        {
+          "version": "v3",
+          "text": "Our software is guaranteed to double every customer's productivity. Join customers today. CLICK HERE to learn more.",
+          "note": "Applied suggested correction for rule R-7",
+          "fixedRule": "R-7",
+          "createdAt": "2026-10-23T16:41:26.316Z"
+        },
+        {
+          "version": "v4",
+          "text": "Our software is can help improve every customer's productivity. Join customers today. CLICK HERE to learn more.",
+          "note": "Applied suggested correction for rule R-1",
+          "fixedRule": "R-1",
+          "createdAt": "2026-10-23T16:45:02.269Z"
+        },
+        {
+          "version": "v5",
+          "text": "Our software is can help improve every customer's productivity. Join customers today. Learn more about pricing to learn more.",
+          "note": "Applied suggested correction for rule A-2",
+          "fixedRule": "A-2",
+          "createdAt": "2026-10-23T16:53:18.182Z"
+        },
+        {
+          "version": "v3",
+          "text": "Our software is guaranteed to double every customer's productivity. Join customers today. CLICK HERE to learn more.",
+          "note": "Applied suggested correction for rule R-7",
+          "fixedRule": "R-7",
+          "createdAt": "2026-10-23T16:54:32.412Z"
+        },
+        {
+          "version": "v4",
+          "text": "Our software is can help improve every customer's productivity. Join customers today. CLICK HERE to learn more.",
+          "note": "Applied suggested correction for rule R-1",
+          "fixedRule": "R-1",
+          "createdAt": "2026-10-23T17:10:23.334Z"
+        },
+        {
+          "version": "v5",
+          "text": "Our software is can help improve every customer's productivity. Join customers today. Learn more about pricing to learn more.",
+          "note": "Applied suggested correction for rule A-2",
+          "fixedRule": "A-2",
+          "createdAt": "2026-10-23T17:10:27.808Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-2",
+      "title": "Acme Card Rewards Promotion",
+      "submitter": "Alex Rivera (Agency)",
+      "status": "Changes requested",
+      "currentVersion": "v1",
+      "currentText": "Best card #1 guaranteed rewards with zero fees for all users. CLICK HERE.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Best card #1 guaranteed rewards with zero fees for all users. CLICK HERE.",
+          "note": "Agency submission",
+          "createdAt": "2026-10-23T13:36:45.114Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-3",
+      "title": "API Platform Launch Announcement",
+      "submitter": "Devon Vance (Product)",
+      "status": "Approved",
+      "currentVersion": "v3",
+      "currentText": "Acme Fintech delivers reliable infrastructure for enterprise customers worldwide.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Acme Fintech delivers infrastructure for users.",
+          "note": "First draft",
+          "createdAt": "2026-10-23T11:36:45.114Z"
+        },
+        {
+          "version": "v3",
+          "text": "Acme Fintech delivers reliable infrastructure for enterprise customers worldwide.",
+          "note": "Approved compliant version",
+          "createdAt": "2026-10-23T12:36:45.114Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-step6-workflow",
+      "title": "Step 6 Workflow Draft",
+      "currentText": "Our software is guaranteed to double every customer's productivity. Join customers today. CLICK HERE to learn more.",
+      "currentVersion": "v2",
+      "status": "Approved",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Our software is guaranteed to double every customer's productivity. Join users today. CLICK HERE to learn more.",
+          "author": "Alex Rivera"
+        },
+        {
+          "version": "v2",
+          "text": "Our software is guaranteed to double every customer's productivity. Join customers today. CLICK HERE to learn more.",
+          "note": "Applied suggested correction for rule R-7",
+          "fixedRule": "R-7",
+          "createdAt": "2026-10-23T16:54:22.487Z"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "f_r1_16",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "guaranteed to double",
+      "start": 16,
+      "end": 36,
+      "explanation": "Absolute claim with no approved source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "can help improve",
+      "status": "dismissed",
+      "draftId": "draft-step6-workflow",
+      "version": "v1",
+      "dismissReason": "Legal and Risk Committee pre-approved this specific productivity guarantee for pilot customers."
+    },
+    {
+      "id": "f_r7_73",
+      "ruleId": "R-7",
+      "category": "terminology",
+      "severity": "medium",
+      "quoted_text": "users",
+      "start": 73,
+      "end": 78,
+      "explanation": "Brand term is 'customers'.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "customers",
+      "status": "active",
+      "draftId": "draft-step6-workflow",
+      "version": "v1"
+    },
+    {
+      "id": "f_a2_86",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "start": 86,
+      "end": 96,
+      "explanation": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "active",
+      "draftId": "draft-step6-workflow",
+      "version": "v1"
+    },
+    {
+      "id": "f_r1_16",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "guaranteed to double",
+      "start": 16,
+      "end": 36,
+      "explanation": "Absolute claim with no approved source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "can help improve",
+      "status": "dismissed",
+      "draftId": "draft-step6-workflow",
+      "version": "v2",
+      "dismissReason": "Legal and Risk Committee pre-approved this specific productivity guarantee for pilot customers."
+    },
+    {
+      "id": "f_a2_90",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "start": 90,
+      "end": 100,
+      "explanation": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "active",
+      "draftId": "draft-step6-workflow",
+      "version": "v2"
+    },
+    {
+      "id": "f_r1_16",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "guaranteed to double",
+      "start": 16,
+      "end": 36,
+      "explanation": "Absolute claim with no approved source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "can help improve",
+      "status": "dismissed",
+      "draftId": "draft-1",
+      "version": "v2",
+      "dismissReason": "Legal pre-approved for Q4 campaign"
+    },
+    {
+      "id": "f_r7_73",
+      "ruleId": "R-7",
+      "category": "terminology",
+      "severity": "medium",
+      "quoted_text": "users",
+      "start": 73,
+      "end": 78,
+      "explanation": "Brand term is 'customers'.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "customers",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v2"
+    },
+    {
+      "id": "f_a2_86",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "start": 86,
+      "end": 96,
+      "explanation": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "dismissed",
+      "draftId": "draft-1",
+      "version": "v2",
+      "dismissReason": "Approved legal exception for promotional link"
+    },
+    {
+      "id": "f_r1_16",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "guaranteed to double",
+      "start": 16,
+      "end": 36,
+      "explanation": "Absolute claim with no approved source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "can help improve",
+      "status": "dismissed",
+      "draftId": "draft-1",
+      "version": "v3",
+      "dismissReason": "Legal pre-approved for Q4 campaign"
+    },
+    {
+      "id": "f_a2_90",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "start": 90,
+      "end": 100,
+      "explanation": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "dismissed",
+      "draftId": "draft-1",
+      "version": "v3",
+      "dismissReason": "Approved exception for promotional link"
+    },
+    {
+      "id": "f_a2_86",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "start": 86,
+      "end": 96,
+      "explanation": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v4"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "dec_1792773405250",
+      "draftId": "draft-1",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "decision": "Changes requested",
+      "comment": "Please substantiate 2x claim before approval.",
+      "version": "v3"
+    },
+    {
+      "id": "dec_1792773925059",
+      "draftId": "draft-1",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "decision": "Approved",
+      "comment": "Approved Q4 campaign after compliance findings review.",
+      "version": "v4"
+    },
+    {
+      "id": "dec_1792774462502",
+      "draftId": "draft-step6-workflow",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "decision": "Approved",
+      "comment": "Approved based on Legal Committee justification for pilot release.",
+      "version": "v2"
+    },
+    {
+      "id": "dec_1792774472430",
+      "draftId": "draft-1",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "decision": "Changes requested",
+      "comment": "Please substantiate 2x claim before approval.",
+      "version": "v3"
+    },
+    {
+      "id": "dec_1792774677427",
+      "draftId": "draft-1",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "decision": "Approved",
+      "comment": "All policy guidelines satisfied",
+      "version": "v3"
+    }
+  ],
+  "audit": [
+    {
+      "id": "audit-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v1",
+      "to": "v2",
+      "comment": "Applied suggested fix for terminology rule R-7 ('users' -> 'customers').",
+      "time": "10 mins ago"
+    },
+    {
+      "id": "audit-2",
+      "actor": "System (Engine)",
+      "action": "Evaluated draft",
+      "from": "Raw Draft",
+      "to": "Validated",
+      "comment": "4 findings validated, 2 rejected (unknown rule ID)",
+      "time": "14 mins ago"
+    },
+    {
+      "id": "audit-3",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Requested changes",
+      "from": "In review",
+      "to": "Changes requested",
+      "comment": "Please attach substantiation for the 2x performance guarantee before publication.",
+      "time": "1 hour ago"
+    },
+    {
+      "id": "audit-4",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "Draft",
+      "to": "In review",
+      "comment": "Initial draft submission for Q4 campaign review.",
+      "time": "2 hours ago"
+    },
+    {
+      "id": "audit-5",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-1 v1.1",
+      "to": "R-1 v1.2",
+      "comment": "Clarified standard for performance multipliers under ASCI advertising code.",
+      "time": "1 day ago"
+    },
+    {
+      "id": "audit_rule_1792773405199",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: false)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792773405206",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: true)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_dismiss_1792773405228",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_a2_86 bypassed with justification: \"Approved legal exception for promotional link\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792773405237",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v2",
+      "to": "v3",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_decision_1792773405252",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Recorded decision (Changes requested)",
+      "from": "In review",
+      "to": "Changes requested",
+      "comment": "Please substantiate 2x claim before approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792773686319",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v3",
+      "to": "v3",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_dismiss_1792773725792",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_a2_90 bypassed with justification: \"Approved landing page exception\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792773766296",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: false)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792773815294",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: true)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792773902277",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v3",
+      "to": "v4",
+      "comment": "Applied suggested fix for rule R-1: 'can help improve'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_decision_1792773925064",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Recorded decision (Approved)",
+      "from": "Changes requested",
+      "to": "Approved",
+      "comment": "Approved Q4 campaign after compliance findings review.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792774398185",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v4",
+      "to": "v5",
+      "comment": "Applied suggested fix for rule A-2: 'Learn more about pricing'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792774429716",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: false)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792774429730",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: true)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792774429747",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v1",
+      "to": "v2",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_dismiss_1792774429753",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_r1_16 bypassed with justification: \"Legal and Risk Committee pre-approved this specific productivity guarantee for pilot customers.\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792774462457",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: false)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792774462472",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: true)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792774462488",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v1",
+      "to": "v2",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_dismiss_1792774462494",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_r1_16 bypassed with justification: \"Legal and Risk Committee pre-approved this specific productivity guarantee for pilot customers.\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792774462498",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "Draft",
+      "to": "In review",
+      "comment": "Submitted revision v2 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_decision_1792774462503",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Recorded decision (Approved)",
+      "from": "In review",
+      "to": "Approved",
+      "comment": "Approved based on Legal Committee justification for pilot release.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792774472379",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: false)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792774472385",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: true)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_dismiss_1792774472406",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_a2_86 bypassed with justification: \"Approved legal exception for promotional link\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792774472414",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v5",
+      "to": "v3",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_decision_1792774472433",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Recorded decision (Changes requested)",
+      "from": "Approved",
+      "to": "Changes requested",
+      "comment": "Please substantiate 2x claim before approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792774521351",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: false)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792774527691",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: true)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_dismiss_1792774574768",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_a2_90 bypassed with justification: \"Approved exception for promotional link\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_dismiss_1792774601234",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_r1_16 bypassed with justification: \"Legal pre-approved for Q4 campaign\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792774609974",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "Changes requested",
+      "to": "In review",
+      "comment": "Submitted revision v3 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_decision_1792774677445",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Recorded decision (Approved)",
+      "from": "In review",
+      "to": "Approved",
+      "comment": "All policy guidelines satisfied",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792775423341",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v3",
+      "to": "v4",
+      "comment": "Applied suggested fix for rule R-1: 'can help improve'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792775427812",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v4",
+      "to": "v5",
+      "comment": "Applied suggested fix for rule A-2: 'Learn more about pricing'",
+      "time": "Just now"
+    }
+  ]
+}
