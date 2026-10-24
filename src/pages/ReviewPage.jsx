@@ -14,17 +14,25 @@ import {
   dismissFindingAPI,
   submitDraftAPI,
   recordDecisionAPI,
+  uploadDocumentAPI,
+  fetchLLMStatusAPI,
 } from '../api';
-import { Shield, Play, Send, CheckCircle2, RotateCcw, AlertCircle, ArrowRight } from 'lucide-react';
+import { Shield, Play, Send, CheckCircle2, RotateCcw, AlertCircle, ArrowRight, Cpu, Upload } from 'lucide-react';
 
 export default function ReviewPage() {
   const location = useLocation();
-  const initialRole = location.state?.role || 'creator';
+  const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
+  const queryDraftId = searchParams.get('draftId');
+  const queryRole = searchParams.get('role');
+
+  const draftId = queryDraftId || location.state?.id || 'draft-1';
+  const initialRole = queryRole || location.state?.role || 'creator';
   const initialDraft = location.state?.draft || INITIAL_DRAFT_TEXT;
   const initialStatus = location.state?.status || 'In review';
-  const draftId = location.state?.id || 'draft-1';
+  const initialTitle = location.state?.title || 'Acme Fintech';
 
   const [role, setRole] = useState(initialRole);
+  const [draftTitle, setDraftTitle] = useState(initialTitle);
   const [draftText, setDraftText] = useState(initialDraft);
   const [versionNo, setVersionNo] = useState(2); // Starts at "v2" per specification
   const [revisionsHistory, setRevisionsHistory] = useState([
@@ -32,6 +40,15 @@ export default function ReviewPage() {
   ]);
   const [status, setStatus] = useState(initialStatus);
   const [isReviewMode, setIsReviewMode] = useState(true);
+
+  // Sync role if updated via query params or navigation state
+  useEffect(() => {
+    if (queryRole && (queryRole === 'creator' || queryRole === 'reviewer')) {
+      setRole(queryRole);
+    } else if (location.state?.role) {
+      setRole(location.state.role);
+    }
+  }, [queryRole, location.state?.role]);
 
   // Findings and State
   const [findings, setFindings] = useState([]);
@@ -61,6 +78,65 @@ export default function ReviewPage() {
   // Compute live version string
   const versionString = `v${versionNo}`;
 
+  // Validation summary line
+  const [validationSummary, setValidationSummary] = useState('');
+
+  // Document Upload (PDF/DOCX/TXT)
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadedFileName, setUploadedFileName] = useState(null);
+  const [llmStatus, setLlmStatus] = useState(null);
+
+  // Fetch live LLM status on mount
+  useEffect(() => {
+    fetchLLMStatusAPI().then((st) => setLlmStatus(st)).catch(() => {});
+  }, []);
+
+  // Handle Document Upload (PDF/DOCX/TXT)
+  const handleFileUpload = async (file) => {
+    if (!file) return;
+
+    const ext = file.name ? file.name.slice(file.name.lastIndexOf('.')).toLowerCase() : '';
+    const allowed = ['.pdf', '.docx', '.txt', '.md'];
+    if (!allowed.includes(ext)) {
+      setError(`Unsupported file type "${ext}". Allowed: PDF (.pdf), Word (.docx), or Text (.txt).`);
+      setLiveMessage('Upload rejected: unsupported file format.');
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      setError(`File size exceeds 10MB limit (${(file.size / (1024 * 1024)).toFixed(1)}MB).`);
+      setLiveMessage('Upload rejected: file size exceeds 10MB.');
+      return;
+    }
+
+    setIsUploading(true);
+    setError(null);
+    setLiveMessage(`Uploading and extracting text from ${file.name}...`);
+
+    try {
+      const res = await uploadDocumentAPI(file, { draftId, runReview: true, actor: 'Alex Rivera (Creator)' });
+      setDraftText(res.text);
+      setUploadedFileName(res.filename);
+      setDraftTitle(res.filename.replace(/\.[^/.]+$/, ''));
+      if (res.findings) {
+        setFindings(res.findings);
+        if (res.findings.length > 0) {
+          setSelectedFindingId(res.findings[0].id);
+        }
+      }
+      if (res.summaryLine) {
+        setValidationSummary(res.summaryLine);
+      }
+      setIsReviewMode(true);
+      setLiveMessage(`Extracted ${res.wordCount} words from ${res.filename}. Review updated with ${res.findings?.length || 0} findings.`);
+    } catch (err) {
+      setError(err.message || 'Failed to extract text from document');
+      setLiveMessage(`Upload failed: ${err.message}`);
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
   // Initial load from Backend API with fallback
   useEffect(() => {
     let isMounted = true;
@@ -70,6 +146,7 @@ export default function ReviewPage() {
         const data = await fetchCurrentReviewAPI(draftId);
         if (!isMounted) return;
         if (data.draft) {
+          setDraftTitle(data.draft.title || initialTitle);
           setDraftText(data.draft.currentText || initialDraft);
           setStatus(data.draft.status || initialStatus);
           const verNum = parseInt((data.draft.currentVersion || 'v2').replace('v', ''), 10) || 2;
@@ -78,9 +155,14 @@ export default function ReviewPage() {
             setRevisionsHistory(data.draft.revisions);
           }
         }
-        if (data.findings?.length) {
+        if (data.summaryLine) {
+          setValidationSummary(data.summaryLine);
+        }
+        if (data.findings && Array.isArray(data.findings)) {
           setFindings(data.findings);
-          setSelectedFindingId(data.findings[0].id);
+          if (data.findings.length > 0) {
+            setSelectedFindingId(data.findings[0].id);
+          }
         } else {
           const computed = computeFindingsForDraft(data.draft?.currentText || initialDraft);
           setFindings(computed);
@@ -96,7 +178,7 @@ export default function ReviewPage() {
     }
     loadWorkspace();
     return () => { isMounted = false; };
-  }, [draftId, initialDraft, initialStatus]);
+  }, [draftId, initialDraft, initialStatus, initialTitle]);
 
   // Run review engine via Backend API
   const executeReview = useCallback(async (text, options = {}) => {
@@ -105,6 +187,9 @@ export default function ReviewPage() {
     try {
       const result = await runReviewAPI(text, { draftId, version: versionString, ...options });
       setFindings(result.findings);
+      if (result.summaryLine) {
+        setValidationSummary(result.summaryLine);
+      }
       setIsReviewMode(true);
       setLiveMessage(`Review completed. ${result.findings.length} findings detected.`);
       if (result.findings.length > 0) {
@@ -262,6 +347,7 @@ export default function ReviewPage() {
       });
       setStatus(newStatus);
       setReviewerActionAttempted(false);
+      setReviewerComment('');
       setLiveMessage(`Review decision recorded: ${newStatus}`);
     } catch (err) {
       alert(err.message);
@@ -316,7 +402,7 @@ export default function ReviewPage() {
           <div className="flex items-center gap-3">
             <span className="text-base font-bold text-slate-900 tracking-tight">BrandGuard</span>
             <span className="text-slate-300">|</span>
-            <span className="text-sm font-semibold text-slate-700">Acme Fintech</span>
+            <span className="text-sm font-semibold text-slate-700">{draftTitle}</span>
             <span className="text-slate-300">|</span>
             <StatusPill status={status} />
             <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-300">
@@ -325,6 +411,13 @@ export default function ReviewPage() {
           </div>
 
           <div className="flex items-center gap-3">
+            {llmStatus && (
+              <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono font-medium border bg-slate-50 border-slate-200 text-slate-600" title={llmStatus.mode}>
+                <Cpu className="w-3.5 h-3.5 text-blue-600" />
+                {llmStatus.mode}
+              </span>
+            )}
+
             {/* Role switcher */}
             <div className="flex items-center gap-2 text-xs">
               <span className="text-slate-600 font-semibold">Demo: switch role</span>
@@ -375,6 +468,9 @@ export default function ReviewPage() {
             findings={findings}
             selectedFindingId={selectedFindingId}
             onHighlightClick={handleHighlightClick}
+            onFileUpload={handleFileUpload}
+            isUploading={isUploading}
+            uploadedFileName={uploadedFileName}
           />
         </div>
 
@@ -423,7 +519,7 @@ export default function ReviewPage() {
                   <span>Review failed, retry</span>
                 </div>
                 <p className="text-rose-700 leading-normal">
-                  Unable to complete brand rule verification check.
+                  {error || 'Unable to complete brand rule verification check.'}
                 </p>
                 <button
                   type="button"
@@ -535,9 +631,9 @@ export default function ReviewPage() {
             )}
           </div>
 
-          {/* Required validation line under the findings list */}
+          {/* Validation line under the findings list */}
           <div className="p-3 border-t border-slate-200 bg-slate-50 text-xs text-slate-600 font-mono flex items-center justify-between flex-shrink-0">
-            <span>4 findings validated, 2 rejected (unknown rule ID)</span>
+            <span>{validationSummary || `${findings.length} findings validated`}</span>
           </div>
         </div>
       </main>
@@ -573,9 +669,10 @@ export default function ReviewPage() {
                 type="button"
                 onClick={() => handleReviewerAction('Approved')}
                 disabled={unresolvedHighCount > 0}
+                title={unresolvedHighCount > 0 ? `Approval locked: ${unresolvedHighCount} unresolved high-severity finding${unresolvedHighCount > 1 ? 's' : ''}` : 'Approve draft'}
                 className="px-3.5 py-2 text-xs font-semibold rounded text-white bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-300 disabled:cursor-not-allowed transition focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:outline-none"
               >
-                Approve
+                Approve {unresolvedHighCount > 0 ? `(${unresolvedHighCount} high open)` : ''}
               </button>
               <button
                 type="button"
@@ -609,28 +706,35 @@ export default function ReviewPage() {
             Run review
           </button>
 
-          <div className="flex items-center gap-3">
-            {unresolvedHighCount > 0 && (
-              <span className="text-xs text-rose-600 font-semibold flex items-center gap-1">
-                <AlertCircle className="w-3.5 h-3.5" />
-                Submit disabled: {unresolvedHighCount} unresolved high-severity finding
-              </span>
-            )}
-            <button
-              type="button"
-              onClick={handleSubmitForApproval}
-              disabled={unresolvedHighCount > 0 || isLoading}
-              className={`inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded transition focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none ${
-                unresolvedHighCount > 0 || isLoading
-                  ? 'bg-slate-200 text-slate-400 border border-slate-300 cursor-not-allowed'
-                  : 'bg-blue-600 text-white hover:bg-blue-700'
-              }`}
-              aria-disabled={unresolvedHighCount > 0 || isLoading}
-            >
-              <Send className="w-3.5 h-3.5" />
-              Submit for approval
-            </button>
-          </div>
+          {role === 'creator' ? (
+            <div className="flex items-center gap-3">
+              {unresolvedHighCount > 0 && (
+                <span className="text-xs text-rose-600 font-semibold flex items-center gap-1">
+                  <AlertCircle className="w-3.5 h-3.5" />
+                  Submit disabled: {unresolvedHighCount} unresolved high-severity finding{unresolvedHighCount > 1 ? 's' : ''}
+                </span>
+              )}
+              <button
+                type="button"
+                onClick={handleSubmitForApproval}
+                disabled={unresolvedHighCount > 0 || isLoading}
+                className={`inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded transition focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none ${
+                  unresolvedHighCount > 0 || isLoading
+                    ? 'bg-slate-200 text-slate-400 border border-slate-300 cursor-not-allowed'
+                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                }`}
+                aria-disabled={unresolvedHighCount > 0 || isLoading}
+              >
+                <Send className="w-3.5 h-3.5" />
+                Submit for approval
+              </button>
+            </div>
+          ) : (
+            <div className="text-xs text-slate-500 font-medium flex items-center gap-2">
+              <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+              Reviewer Mode: Use the review controls above to approve, request changes, or reject.
+            </div>
+          )}
         </div>
       </footer>
 

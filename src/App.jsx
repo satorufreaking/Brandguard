@@ -4,6 +4,7 @@ import ReviewPage from './pages/ReviewPage';
 import QueuePage from './pages/QueuePage';
 import RulesPage from './pages/RulesPage';
 import AuditPage from './pages/AuditPage';
+import AnalyticsPage from './pages/AnalyticsPage';
 import { Shield } from 'lucide-react';
 
 function TopNav() {
@@ -26,7 +27,7 @@ function TopNav() {
             <span className="font-bold text-sm tracking-tight text-slate-900">BrandGuard</span>
           </div>
 
-          {/* Nav Links: Review | Queue | Rules | Audit */}
+          {/* Nav Links: Review | Queue | Rules | Audit | Analytics */}
           <div className="flex items-center gap-1">
             <NavLink to="/review" className={navLinkClass}>
               Review
@@ -39,6 +40,9 @@ function TopNav() {
             </NavLink>
             <NavLink to="/audit" className={navLinkClass}>
               Audit
+            </NavLink>
+            <NavLink to="/analytics" className={navLinkClass}>
+              Analytics
             </NavLink>
           </div>
         </div>
@@ -67,6 +71,7 @@ export default function App() {
             <Route path="/queue" element={<QueuePage />} />
             <Route path="/rules" element={<RulesPage />} />
             <Route path="/audit" element={<AuditPage />} />
+            <Route path="/analytics" element={<AnalyticsPage />} />
           </Routes>
         </div>
       </div>

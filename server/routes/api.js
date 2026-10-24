@@ -1,6 +1,14 @@
 import express from 'express';
+import multer from 'multer';
 import { db } from '../db.js';
 import { executeReviewPipeline, runDeterministicChecks } from '../services/reviewEngine.js';
+import { parseDocumentBuffer } from '../services/documentParser.js';
+import { getLLMConfig } from '../services/llmAdapter.js';
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
+});
 
 export const router = express.Router();
 
@@ -101,18 +109,38 @@ router.get('/reviews/current', async (req, res) => {
     }
 
     const activeRules = await db.getRules();
-    let findings = await db.getFindings(draft.id, draft.currentVersion);
+    const existingFindings = await db.getFindings(draft.id, draft.currentVersion);
 
-    // If no findings cached in DB for current version, run review pipeline
-    if (!findings || findings.length === 0) {
-      const reviewResult = await executeReviewPipeline(draft.currentText, activeRules);
-      findings = await db.saveFindings(draft.id, draft.currentVersion, reviewResult.findings);
-    }
+    // Re-evaluate review findings against draft text and active rules
+    const reviewResult = await executeReviewPipeline(draft.currentText, activeRules);
+
+    // Preserve any existing dismissals and justifications for matching findings
+    const dismissedMap = new Map(
+      (existingFindings || [])
+        .filter((f) => f.status === 'dismissed')
+        .map((f) => [`${f.ruleId}:${f.quoted_text}`, f.dismissReason])
+    );
+
+    const mergedFindings = reviewResult.findings.map((f) => {
+      const key = `${f.ruleId}:${f.quoted_text}`;
+      if (dismissedMap.has(key)) {
+        return {
+          ...f,
+          status: 'dismissed',
+          dismissReason: dismissedMap.get(key),
+        };
+      }
+      return f;
+    });
+
+    const findings = await db.saveFindings(draft.id, draft.currentVersion, mergedFindings);
 
     res.json({
       draft,
       findings,
       rules: activeRules,
+      meta: reviewResult.meta,
+      summaryLine: reviewResult.summaryLine,
     });
   } catch (err) {
     res.status(500).json({ error: 'Failed to load review workspace', message: err.message });
@@ -137,6 +165,7 @@ router.post('/reviews/run', async (req, res) => {
       draftText: text,
       findings: saved,
       meta: result.meta,
+      summaryLine: result.summaryLine,
     });
   } catch (err) {
     res.status(500).json({ error: 'Review pipeline failure', message: err.message });
@@ -168,11 +197,33 @@ router.post('/reviews/accept', async (req, res) => {
     // Re-run review checks on the new text and update findings in DB
     const activeRules = await db.getRules();
     const reviewResult = await executeReviewPipeline(newText, activeRules);
-    const savedFindings = await db.saveFindings(draftId, computedNextVer, reviewResult.findings);
+
+    // Preserve dismissals for unchanged findings
+    const prevFindings = await db.getFindings(draftId, oldVersion);
+    const dismissedMap = new Map(
+      (prevFindings || [])
+        .filter((f) => f.status === 'dismissed')
+        .map((f) => [`${f.ruleId}:${f.quoted_text}`, f.dismissReason])
+    );
+
+    const mergedFindings = reviewResult.findings.map((f) => {
+      const key = `${f.ruleId}:${f.quoted_text}`;
+      if (dismissedMap.has(key)) {
+        return {
+          ...f,
+          status: 'dismissed',
+          dismissReason: dismissedMap.get(key),
+        };
+      }
+      return f;
+    });
+
+    const savedFindings = await db.saveFindings(draftId, computedNextVer, mergedFindings);
 
     // Record audit event
     await db.addAuditEvent({
       id: `audit_accept_${Date.now()}`,
+      draftId,
       actor: 'Alex Rivera (Creator)',
       action: 'Saved revision',
       from: oldVersion,
@@ -185,6 +236,7 @@ router.post('/reviews/accept', async (req, res) => {
       draft: updatedDraft,
       findings: savedFindings,
       version: computedNextVer,
+      meta: reviewResult.meta,
     });
   } catch (err) {
     res.status(500).json({ error: 'Failed to accept correction', message: err.message });
@@ -210,11 +262,12 @@ router.post('/reviews/dismiss', async (req, res) => {
     // Record audit event
     await db.addAuditEvent({
       id: `audit_dismiss_${Date.now()}`,
+      draftId,
       actor: 'Alex Rivera (Creator)',
       action: 'Dismissed finding',
       from: 'active',
       to: 'dismissed',
-      comment: `Finding ${findingId} bypassed with justification: "${reason.trim()}"`,
+      comment: `Finding ${findingId} bypassed on ${draftId} with justification: "${reason.trim()}"`,
       time: 'Just now',
     });
 
@@ -251,6 +304,7 @@ router.post('/reviews/submit', async (req, res) => {
 
     await db.addAuditEvent({
       id: `audit_submit_${Date.now()}`,
+      draftId,
       actor,
       action: 'Submitted draft',
       from: draft.status,
@@ -312,6 +366,7 @@ router.post('/reviews/decision', async (req, res) => {
     // Append to immutable audit log
     await db.addAuditEvent({
       id: `audit_decision_${Date.now()}`,
+      draftId,
       actor: reviewer,
       action: `Recorded decision (${decision})`,
       from: draft.status,
@@ -349,4 +404,125 @@ router.get('/audit', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch audit events', message: err.message });
   }
+});
+
+// --- DOCUMENT PARSING & UPLOAD API ---
+router.post('/documents/extract', upload.single('file'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        error: 'No file uploaded. Please upload a PDF (.pdf), Word document (.docx), or Text file (.txt).',
+      });
+    }
+
+    const { buffer, originalname, mimetype, size } = req.file;
+
+    const parsed = await parseDocumentBuffer(buffer, originalname, mimetype);
+
+    // Record audit event for document ingestion
+    await db.addAuditEvent({
+      id: `audit_upload_${Date.now()}`,
+      draftId: req.body.draftId || 'new-upload',
+      actor: req.body.actor || 'Alex Rivera (Creator)',
+      action: 'Uploaded document draft',
+      from: 'Local file',
+      to: `${originalname} (${(size / 1024).toFixed(1)} KB)`,
+      comment: `Extracted ${parsed.wordCount} words (${parsed.charCount} chars) from ${originalname}`,
+      time: 'Just now',
+    });
+
+    let reviewResult = null;
+    if (req.body.runReview === 'true') {
+      const activeRules = await db.getRules();
+      reviewResult = await executeReviewPipeline(parsed.text, activeRules);
+    }
+
+    res.json({
+      success: true,
+      text: parsed.text,
+      filename: parsed.filename,
+      charCount: parsed.charCount,
+      wordCount: parsed.wordCount,
+      findings: reviewResult ? reviewResult.findings : null,
+      summaryLine: reviewResult ? reviewResult.summaryLine : null,
+      meta: reviewResult ? reviewResult.meta : null,
+    });
+  } catch (err) {
+    console.warn('[BrandGuard Document Upload Error]:', err.message);
+    res.status(400).json({
+      error: err.message || 'Failed to process and extract text from uploaded document.',
+    });
+  }
+});
+
+// --- GOVERNANCE ANALYTICS API ---
+router.get('/analytics/governance', async (req, res) => {
+  try {
+    const analytics = await db.getGovernanceAnalytics();
+    res.json(analytics);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to generate governance analytics', message: err.message });
+  }
+});
+
+// --- LLM PROVIDER STATUS API ---
+router.get('/llm/status', (req, res) => {
+  const config = getLLMConfig();
+  res.json({
+    configured: config.configured,
+    provider: config.provider,
+    model: config.model,
+    apiKeyMasked: config.apiKeyMasked,
+    mode: config.configured ? `Live Semantic (${config.provider})` : 'Deterministic Mode (No LLM API key configured)',
+  });
+});
+
+// --- AUTHENTICATION & DEMO ROLES API ---
+const USER_PROFILES = {
+  creator: {
+    id: 'user-creator',
+    name: 'Alex Rivera',
+    email: 'alex@brandguard.internal',
+    role: 'creator',
+    department: 'Marketing & Brand Content',
+    permissions: ['draft:create', 'draft:edit', 'draft:submit', 'document:upload'],
+  },
+  reviewer: {
+    id: 'user-reviewer',
+    name: 'Sarah Chen',
+    email: 'sarah@brandguard.internal',
+    role: 'reviewer',
+    department: 'Brand Compliance & Regulatory',
+    permissions: ['review:approve', 'review:reject', 'review:request_changes', 'audit:view'],
+  },
+  admin: {
+    id: 'user-admin',
+    name: 'Marcus Brody',
+    email: 'admin@brandguard.internal',
+    role: 'admin',
+    department: 'Legal & Risk Policy',
+    permissions: ['rules:edit', 'facts:add', 'governance:manage', 'all'],
+  },
+};
+
+router.get('/auth/me', (req, res) => {
+  const role = req.query.role || req.headers['x-brandguard-role'] || 'creator';
+  const profile = USER_PROFILES[role] || USER_PROFILES.creator;
+  res.json({
+    user: profile,
+    authenticated: true,
+    authMode: 'demo_session',
+  });
+});
+
+router.post('/auth/switch-role', (req, res) => {
+  const { role } = req.body;
+  if (!USER_PROFILES[role]) {
+    return res.status(400).json({ error: `Invalid role "${role}". Allowed roles: creator, reviewer, admin.` });
+  }
+  res.json({
+    success: true,
+    user: USER_PROFILES[role],
+    message: `Switched demo active role to ${role}.`,
+  });
 });

@@ -1,0 +1,37 @@
+services:
+  # Express Backend Web Service
+  - type: web
+    name: brandguard-api
+    runtime: node
+    plan: starter
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: LLM_PROVIDER
+        value: deterministic
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+
+  # Static React Frontend Site
+  - type: static_site
+    name: brandguard-ui
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://brandguard-api.onrender.com/api/*
+      - type: rewrite
+        source: /*
+        destination: /index.html

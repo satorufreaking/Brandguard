@@ -14,6 +14,7 @@ import {
   SEED_DRAFTS,
   SEED_AUDIT_LOGS,
 } from './seeds/defaultData.js';
+import { runDeterministicChecks } from './services/reviewEngine.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -301,13 +302,18 @@ export const db = {
   async getQueue() {
     if (dbMode === 'mongodb') {
       const drafts = await Draft.find().lean();
+      const rules = await BrandRule.find({ active: { $ne: false } }).lean();
       return await Promise.all(
         drafts.map(async (d) => {
-          const highCount = await ReviewFinding.countDocuments({
+          let highCount = await ReviewFinding.countDocuments({
             draftId: d.id,
             status: 'active',
             severity: 'high',
           });
+          if (highCount === 0 && d.status !== 'Approved') {
+            const checks = runDeterministicChecks(d.currentText, rules);
+            highCount = checks.filter((f) => f.status === 'active' && f.severity === 'high').length;
+          }
           return {
             id: d.id,
             title: d.title,
@@ -321,9 +327,11 @@ export const db = {
         })
       );
     }
+    const rules = embeddedStore.data.rules.filter((r) => r.active !== false);
     return embeddedStore.data.drafts.map((d) => {
-      const highCount = embeddedStore.data.findings.filter(
-        (f) => f.draftId === d.id && f.status === 'active' && f.severity === 'high'
+      const draftFindings = d.status === 'Approved' ? [] : runDeterministicChecks(d.currentText, rules);
+      const highCount = draftFindings.filter(
+        (f) => f.status === 'active' && f.severity === 'high'
       ).length;
       return {
         id: d.id,
@@ -336,5 +344,97 @@ export const db = {
         draft: d.currentText,
       };
     });
+  },
+
+  // Governance Analytics
+  async getGovernanceAnalytics() {
+    const rules = dbMode === 'mongodb'
+      ? await BrandRule.find().lean()
+      : embeddedStore.data.rules;
+    const drafts = dbMode === 'mongodb'
+      ? await Draft.find().lean()
+      : embeddedStore.data.drafts;
+    const activeRules = rules.filter((r) => r.active !== false);
+    const ruleMap = new Map(rules.map((r) => [r.id, r]));
+
+    // Evaluate findings across all drafts
+    let allFindings = [];
+    for (const d of drafts) {
+      let draftFindings = [];
+      if (dbMode === 'mongodb') {
+        draftFindings = await ReviewFinding.find({ draftId: d.id, version: d.currentVersion }).lean();
+      } else {
+        draftFindings = embeddedStore.data.findings.filter(
+          (f) => f.draftId === d.id && (!d.currentVersion || f.version === d.currentVersion)
+        );
+      }
+      if (draftFindings.length === 0 && d.status !== 'Approved') {
+        draftFindings = runDeterministicChecks(d.currentText, activeRules);
+      }
+      allFindings.push(...draftFindings);
+    }
+
+    const totalViolations = allFindings.length;
+    const ruleCountMap = {};
+    const severityBreakdown = { high: 0, medium: 0, low: 0 };
+    const categoryBreakdown = {};
+
+    for (const f of allFindings) {
+      if (f.severity) {
+        severityBreakdown[f.severity] = (severityBreakdown[f.severity] || 0) + 1;
+      }
+      if (f.category) {
+        categoryBreakdown[f.category] = (categoryBreakdown[f.category] || 0) + 1;
+      }
+      ruleCountMap[f.ruleId] = (ruleCountMap[f.ruleId] || 0) + 1;
+    }
+
+    const mostViolatedRules = Object.entries(ruleCountMap)
+      .map(([ruleId, count]) => {
+        const rule = ruleMap.get(ruleId) || { id: ruleId, text: 'Custom rule', severity: 'medium', category: 'general' };
+        const percentage = totalViolations > 0 ? Math.round((count / totalViolations) * 100) : 0;
+        return {
+          ruleId,
+          code: rule.code || ruleId,
+          text: rule.text,
+          summary: rule.summary || rule.text,
+          severity: rule.severity,
+          category: rule.category,
+          count,
+          percentage,
+        };
+      })
+      .sort((a, b) => b.count - a.count);
+
+    let compliantDrafts = 0;
+    for (const d of drafts) {
+      if (d.status === 'Approved') {
+        compliantDrafts++;
+      } else {
+        const dFindings = runDeterministicChecks(d.currentText, activeRules);
+        const highCount = dFindings.filter((f) => f.severity === 'high').length;
+        if (highCount === 0) compliantDrafts++;
+      }
+    }
+
+    const complianceRate = drafts.length > 0
+      ? Math.round((compliantDrafts / drafts.length) * 100)
+      : 100;
+
+    const audits = dbMode === 'mongodb'
+      ? await AuditEvent.find().sort({ createdAt: -1 }).limit(10).lean()
+      : embeddedStore.data.audit.slice(-10).reverse();
+
+    return {
+      totalDrafts: drafts.length,
+      totalViolations,
+      activeRulesCount: activeRules.length,
+      complianceRate,
+      severityBreakdown,
+      categoryBreakdown,
+      mostViolatedRules,
+      recentAudits: audits,
+      timestamp: new Date().toISOString(),
+    };
   },
 };

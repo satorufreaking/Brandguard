@@ -1,3 +1,5 @@
+import { runSemanticReview, getLLMConfig } from './llmAdapter.js';
+
 /**
  * BrandGuard Backend Review Engine
  * Implements deterministic brand-rule checks with dynamic inclusive-start / exclusive-end offsets.
@@ -12,25 +14,65 @@ export function runDeterministicChecks(draftText, activeRules = []) {
   const findings = [];
   const ruleMap = new Map(activeRules.map((r) => [r.id, r]));
 
-  // 1. Rule R-1: Unsupported absolute claim ("guaranteed to double")
+  // 1. Rule R-1: Unsupported absolute claim ("guaranteed to double", "Best", "#1", "guaranteed")
   if (ruleMap.has('R-1') && ruleMap.get('R-1').active !== false) {
-    const target = 'guaranteed to double';
-    const idx = draftText.toLowerCase().indexOf(target.toLowerCase());
-    if (idx !== -1) {
-      findings.push({
-        id: `f_r1_${idx}`,
-        ruleId: 'R-1',
-        category: 'claim_substantiation',
-        severity: 'high',
-        quoted_text: draftText.slice(idx, idx + target.length),
-        start: idx,
-        end: idx + target.length,
+    const r1Patterns = [
+      {
+        regex: /\b(guaranteed\s+to\s+double)\b/gi,
         explanation: 'Absolute claim with no approved source.',
-        evidence_status: 'not_enough_information',
-        human_review_required: true,
-        suggested_revision: 'can help improve',
-        status: 'active',
-      });
+        suggested: 'can help improve',
+      },
+      {
+        regex: /\b(best)\b/gi,
+        explanation: 'Absolute claim "Best" with no approved benchmark source.',
+        suggested: 'Leading',
+      },
+      {
+        regex: /(#1|\bno\.?\s*1\b|\bnumber\s*1\b)/gi,
+        explanation: 'Unsubstantiated ranking claim "#1" with no accredited third-party study.',
+        suggested: 'Top-rated',
+      },
+      {
+        regex: /\b(guaranteed|guarantee)\b/gi,
+        explanation: 'Unqualified performance guarantee with no approved underwriting terms.',
+        suggested: 'flexible',
+      },
+    ];
+
+    const matchedSpans = [];
+
+    for (const pat of r1Patterns) {
+      let m;
+      pat.regex.lastIndex = 0;
+      while ((m = pat.regex.exec(draftText)) !== null) {
+        const start = m.index;
+        const end = m.index + m[0].length;
+        // Avoid overlapping with an already matched R-1 span (e.g. 'guaranteed' inside 'guaranteed to double')
+        const overlaps = matchedSpans.some(
+          (s) => Math.max(start, s.start) < Math.min(end, s.end)
+        );
+        if (!overlaps) {
+          matchedSpans.push({ start, end });
+          findings.push({
+            id: `f_r1_${start}`,
+            ruleId: 'R-1',
+            category: 'claim_substantiation',
+            severity: 'high',
+            quoted_text: draftText.slice(start, end),
+            quote: draftText.slice(start, end),
+            start,
+            end,
+            characterStart: start,
+            characterEnd: end,
+            explanation: pat.explanation,
+            message: pat.explanation,
+            evidence_status: 'not_enough_information',
+            human_review_required: true,
+            suggested_revision: pat.suggested,
+            status: 'active',
+          });
+        }
+      }
     }
   }
 
@@ -45,9 +87,13 @@ export function runDeterministicChecks(draftText, activeRules = []) {
         category: 'terminology',
         severity: 'medium',
         quoted_text: match[0],
+        quote: match[0],
         start: match.index,
         end: match.index + match[0].length,
+        characterStart: match.index,
+        characterEnd: match.index + match[0].length,
         explanation: "Brand term is 'customers'.",
+        message: "Brand term is 'customers'.",
         evidence_status: 'rule_match',
         human_review_required: false,
         suggested_revision: 'customers',
@@ -67,9 +113,13 @@ export function runDeterministicChecks(draftText, activeRules = []) {
         category: 'accessibility',
         severity: 'low',
         quoted_text: match[0],
+        quote: match[0],
         start: match.index,
         end: match.index + match[0].length,
+        characterStart: match.index,
+        characterEnd: match.index + match[0].length,
         explanation: 'Non-descriptive link text and all caps.',
+        message: 'Non-descriptive link text and all caps.',
         evidence_status: 'rule_match',
         human_review_required: false,
         suggested_revision: 'Learn more about pricing',
@@ -93,34 +143,65 @@ export function runDeterministicChecks(draftText, activeRules = []) {
  */
 export async function executeReviewPipeline(draftText, activeRules = []) {
   const deterministicFindings = runDeterministicChecks(draftText, activeRules);
+  const llmConfig = getLLMConfig();
 
-  const hasLLMConfig = Boolean(
-    process.env.OPENAI_API_KEY || process.env.GEMINI_API_KEY || process.env.ANTHROPIC_API_KEY
-  );
+  let semanticResult = {
+    findings: [],
+    rejected: [],
+    used: false,
+    provider: null,
+    model: null,
+    status: 'Deterministic Mode (No LLM credentials configured)',
+  };
 
-  if (!hasLLMConfig) {
-    // LLM credentials are not configured. We do not fabricate fake AI responses.
-    return {
-      findings: deterministicFindings,
-      meta: {
-        engine: 'deterministic',
-        llmUsed: false,
-        validatedCount: deterministicFindings.length,
-        rejectedCount: 0,
-        summaryLine: '4 findings validated, 2 rejected (unknown rule ID)',
-      },
-    };
+  if (llmConfig.configured) {
+    semanticResult = await runSemanticReview(draftText, activeRules);
   }
 
-  // If LLM configured, would query provider adapter here with strict schema validation
+  // Combine findings, filtering out duplicate spans for same rule
+  const combined = [...deterministicFindings];
+  for (const sf of semanticResult.findings) {
+    const isDuplicate = deterministicFindings.some(
+      (df) => df.ruleId === sf.ruleId && Math.max(df.start, sf.start) < Math.min(df.end, sf.end)
+    );
+    if (!isDuplicate) {
+      combined.push(sf);
+    }
+  }
+
+  // Sort by start offset ascending, then high severity first
+  const rank = { high: 3, medium: 2, low: 1 };
+  combined.sort((a, b) => {
+    if (a.start !== b.start) return a.start - b.start;
+    return rank[b.severity] - rank[a.severity];
+  });
+
+  const rejectedCount = semanticResult.rejected.length;
+  let summaryLine = '';
+  if (semanticResult.used) {
+    summaryLine = `${combined.length} finding${combined.length === 1 ? '' : 's'} validated across active brand rules (${deterministicFindings.length} deterministic, ${semanticResult.findings.length} semantic)${
+      rejectedCount > 0 ? `, ${rejectedCount} rejected (unknown rule/unmatched)` : ''
+    }`;
+  } else {
+    summaryLine = combined.length > 0
+      ? `${combined.length} finding${combined.length === 1 ? '' : 's'} validated across active brand rules`
+      : '0 violations flagged across active brand rules (all rules passed)';
+  }
+
   return {
-    findings: deterministicFindings,
+    findings: combined,
+    summaryLine,
     meta: {
-      engine: 'hybrid',
-      llmUsed: true,
-      validatedCount: deterministicFindings.length,
-      rejectedCount: 0,
-      summaryLine: '4 findings validated, 2 rejected (unknown rule ID)',
+      engine: semanticResult.used ? 'hybrid' : 'deterministic',
+      llmConfigured: llmConfig.configured,
+      llmUsed: semanticResult.used,
+      provider: semanticResult.provider || (llmConfig.configured ? llmConfig.provider : null),
+      model: semanticResult.model || (llmConfig.configured ? llmConfig.model : null),
+      deterministicCount: deterministicFindings.length,
+      semanticCount: semanticResult.findings.length,
+      rejectedCount,
+      status: semanticResult.status,
+      summaryLine,
     },
   };
 }

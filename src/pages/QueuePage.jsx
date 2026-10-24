@@ -25,14 +25,15 @@ export default function QueuePage() {
   }, []);
 
   const handleOpenDraftInReviewerMode = (item) => {
-    // Navigate to Review screen in REVIEWER mode using React Router
-    navigate('/review', {
+    // Navigate to Review screen in REVIEWER mode using React Router with query params and state
+    navigate(`/review?draftId=${encodeURIComponent(item.id)}&role=reviewer`, {
       state: {
         id: item.id,
         role: 'reviewer',
         draft: item.draft,
         title: item.title,
         status: item.status,
+        version: item.version,
       },
     });
   };

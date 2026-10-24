@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { FileText, AlertCircle, AlertTriangle, Info, Edit3, Eye } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { FileText, AlertCircle, AlertTriangle, Info, Edit3, Eye, Upload } from 'lucide-react';
 
 export default function DraftPanel({
   draftText,
@@ -9,7 +9,39 @@ export default function DraftPanel({
   findings,
   selectedFindingId,
   onHighlightClick,
+  onFileUpload,
+  isUploading = false,
+  uploadedFileName = null,
 }) {
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    if (e.dataTransfer?.files && e.dataTransfer.files.length > 0) {
+      const file = e.dataTransfer.files[0];
+      if (onFileUpload) onFileUpload(file);
+    }
+  };
+
+  const handleFileInputChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      if (onFileUpload) onFileUpload(file);
+    }
+    // Reset input so same file can be selected again
+    e.target.value = '';
+  };
   // Slicing engine: selects highest-severity highlight for overlapping ranges, sorted by start offset
   const textSlices = useMemo(() => {
     if (!draftText) return [];
@@ -87,10 +119,15 @@ export default function DraftPanel({
   return (
     <section
       aria-label="Draft text workspace"
-      className="flex flex-col h-full bg-white rounded border border-slate-200 shadow-none overflow-hidden"
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+      className={`flex flex-col h-full bg-white rounded border transition-colors overflow-hidden ${
+        isDragging ? 'border-2 border-dashed border-blue-500 bg-blue-50/30' : 'border-slate-200'
+      }`}
     >
       {/* Draft Panel Toolbar */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-slate-50 flex-shrink-0">
+      <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 border-b border-slate-200 bg-slate-50 flex-shrink-0">
         <div className="flex items-center gap-2">
           <FileText className="w-4 h-4 text-slate-500" aria-hidden="true" />
           <h2 className="text-sm font-semibold text-slate-900">
@@ -100,24 +137,49 @@ export default function DraftPanel({
           <span className="text-xs text-slate-500 font-mono">
             {draftText.length} characters
           </span>
+          {uploadedFileName && (
+            <span className="text-[11px] font-medium text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 hidden sm:inline-block truncate max-w-[180px]">
+              {uploadedFileName}
+            </span>
+          )}
         </div>
 
-        <button
-          type="button"
-          onClick={onToggleReviewMode}
-          className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 transition focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none"
-          aria-label={isReviewMode ? 'Switch to text editing mode' : 'Switch to review highlights mode'}
-        >
-          {isReviewMode ? (
-            <>
-              <Edit3 className="w-3.5 h-3.5" /> Edit text
-            </>
-          ) : (
-            <>
-              <Eye className="w-3.5 h-3.5" /> View highlights
-            </>
-          )}
-        </button>
+        <div className="flex items-center gap-2">
+          {/* Upload Button */}
+          <label
+            className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 cursor-pointer transition focus-within:ring-2 focus-within:ring-blue-600 ${
+              isUploading ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            title="Upload a PDF, DOCX, or TXT file"
+          >
+            <Upload className={`w-3.5 h-3.5 text-blue-600 ${isUploading ? 'animate-bounce' : ''}`} />
+            <span>{isUploading ? 'Extracting...' : 'Upload PDF/DOCX'}</span>
+            <input
+              type="file"
+              accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
+              className="sr-only"
+              onChange={handleFileInputChange}
+              disabled={isUploading}
+            />
+          </label>
+
+          <button
+            type="button"
+            onClick={onToggleReviewMode}
+            className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 transition focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none"
+            aria-label={isReviewMode ? 'Switch to text editing mode' : 'Switch to review highlights mode'}
+          >
+            {isReviewMode ? (
+              <>
+                <Edit3 className="w-3.5 h-3.5" /> Edit text
+              </>
+            ) : (
+              <>
+                <Eye className="w-3.5 h-3.5" /> View highlights
+              </>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Draft Content: Before review (Textarea) vs After review (Highlighted Spans) */}

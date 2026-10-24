@@ -16,6 +16,18 @@ app.use(express.json());
 // Mount API routes
 app.use('/api', apiRouter);
 
+// Serve frontend static assets in production if public directory exists
+const publicDir = new URL('public', import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1');
+try {
+  app.use(express.static(publicDir));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) return next();
+    res.sendFile('index.html', { root: publicDir }, (err) => {
+      if (err) next();
+    });
+  });
+} catch (_) {}
+
 // Global Error Handler
 app.use((err, req, res, next) => {
   console.error('[BrandGuard Server Error]:', err.stack);

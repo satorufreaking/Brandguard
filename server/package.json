@@ -13,7 +13,10 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "mongoose": "^9.11.3"
+    "mammoth": "^1.13.0",
+    "mongoose": "^9.11.3",
+    "multer": "^2.5.0",
+    "pdf-parse": "^2.4.5"
   },
   "devDependencies": {
     "supertest": "^7.3.1",

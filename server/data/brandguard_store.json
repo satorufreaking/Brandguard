@@ -84,9 +84,9 @@
       "id": "draft-1",
       "title": "Q4 Growth Announcement & Social Copy",
       "submitter": "Sarah Chen (Marketing)",
-      "status": "Approved",
-      "currentVersion": "v5",
-      "currentText": "Our software is can help improve every customer's productivity. Join customers today. Learn more about pricing to learn more.",
+      "status": "In review",
+      "currentVersion": "v7",
+      "currentText": "Synthetic test document | BrandGuard AI Page 1\nBRANDGUARD AI / PDF UPLOAD TEST\nQ4 Card Rewards Promotion\nMarketing copy draft - for review only\nDocument\nID BG-PDF-TEST-001 Status Draft / Not approved\nBrand Acme Fintech (fictional) Campaign Q4 card rewards\nDraft content\nAcme Fintech has the Leading card in the market. Our rewards are\ncan help improve for every customer, with zero fees for\neveryone. Join thousands of customers today. Learn more about pricing to apply. A\npromotional rate is available to qualified applicants.\nReviewer note: This draft has not been approved. Supporting evidence and required promotional disclosures have\nnot been attached.\n\n-- 1 of 1 --",
       "revisions": [
         {
           "version": "v1",
@@ -148,6 +148,111 @@
           "note": "Applied suggested correction for rule A-2",
           "fixedRule": "A-2",
           "createdAt": "2026-10-23T17:10:27.808Z"
+        },
+        {
+          "version": "v6",
+          "text": "Our software is can help improve every customer's productivity. Join users today. CLICK HERE to learn more.",
+          "note": "Applied suggested correction for rule R-1",
+          "fixedRule": "R-1",
+          "createdAt": "2026-10-24T15:47:57.172Z"
+        },
+        {
+          "version": "v7",
+          "text": "Our software is can help improve every customer's productivity. Join users today. Learn more about pricing to learn more.",
+          "note": "Applied suggested correction for rule A-2",
+          "fixedRule": "A-2",
+          "createdAt": "2026-10-24T15:48:05.249Z"
+        },
+        {
+          "version": "v8",
+          "text": "Our software is can help improve every customer's productivity. Join customers today. Learn more about pricing to learn more.",
+          "note": "Applied suggested correction for rule R-7",
+          "fixedRule": "R-7",
+          "createdAt": "2026-10-24T15:48:11.179Z"
+        },
+        {
+          "version": "v9",
+          "text": "Our software is can help improve every customer's productivity. Join users today. CLICK HERE to learn more.",
+          "note": "Applied suggested correction for rule R-1",
+          "fixedRule": "R-1",
+          "createdAt": "2026-10-24T15:50:53.016Z"
+        },
+        {
+          "version": "v10",
+          "text": "Our software is can help improve every customer's productivity. Join customers today. CLICK HERE to learn more.",
+          "note": "Applied suggested correction for rule R-7",
+          "fixedRule": "R-7",
+          "createdAt": "2026-10-24T15:50:54.211Z"
+        },
+        {
+          "version": "v11",
+          "text": "Our software is can help improve every customer's productivity. Join customers today. Learn more about pricing to learn more.",
+          "note": "Applied suggested correction for rule A-2",
+          "fixedRule": "A-2",
+          "createdAt": "2026-10-24T15:50:57.467Z"
+        },
+        {
+          "version": "v12",
+          "text": "Our software is can help improve every customer's productivity. Join users today. CLICK HERE to learn more.",
+          "note": "Applied suggested correction for rule R-1",
+          "fixedRule": "R-1",
+          "createdAt": "2026-10-24T15:53:26.446Z"
+        },
+        {
+          "version": "v13",
+          "text": "Our software is can help improve every customer's productivity. Join users today. Learn more about pricing to learn more.",
+          "note": "Applied suggested correction for rule A-2",
+          "fixedRule": "A-2",
+          "createdAt": "2026-10-24T15:53:37.585Z"
+        },
+        {
+          "version": "v14",
+          "text": "Our software is can help improve every customer's productivity. Join customers today. Learn more about pricing to learn more.",
+          "note": "Applied suggested correction for rule R-7",
+          "fixedRule": "R-7",
+          "createdAt": "2026-10-24T16:05:30.411Z"
+        },
+        {
+          "version": "v3",
+          "text": "Our software is guaranteed to double every customer's productivity. Join customers today. CLICK HERE to learn more.",
+          "note": "Applied suggested correction for rule R-7",
+          "fixedRule": "R-7",
+          "createdAt": "2026-10-24T17:46:44.590Z"
+        },
+        {
+          "version": "v3",
+          "text": "Our software is guaranteed to double every customer's productivity. Join customers today. CLICK HERE to learn more.",
+          "note": "Applied suggested correction for rule R-7",
+          "fixedRule": "R-7",
+          "createdAt": "2026-10-24T17:50:11.514Z"
+        },
+        {
+          "version": "v3",
+          "text": "Our software is guaranteed to double every customer's productivity. Join customers today. CLICK HERE to learn more.",
+          "note": "Applied suggested correction for rule R-7",
+          "fixedRule": "R-7",
+          "createdAt": "2026-10-24T17:51:52.711Z"
+        },
+        {
+          "version": "v4",
+          "text": "Synthetic test document | BrandGuard AI Page 1\nBRANDGUARD AI / PDF UPLOAD TEST\nQ4 Card Rewards Promotion\nMarketing copy draft - for review only\nDocument\nID BG-PDF-TEST-001 Status Draft / Not approved\nBrand Acme Fintech (fictional) Campaign Q4 card rewards\nDraft content\nAcme Fintech has the Leading card in the market. Our rewards are\nguaranteed to double for every customer, with zero fees for\neveryone. Join thousands of users today. CLICK HERE to apply. A\npromotional rate is available to qualified applicants.\nReviewer note: This draft has not been approved. Supporting evidence and required promotional disclosures have\nnot been attached.\n\n-- 1 of 1 --",
+          "note": "Applied suggested correction for rule R-1",
+          "fixedRule": "R-1",
+          "createdAt": "2026-10-24T17:57:28.948Z"
+        },
+        {
+          "version": "v6",
+          "text": "Synthetic test document | BrandGuard AI Page 1\nBRANDGUARD AI / PDF UPLOAD TEST\nQ4 Card Rewards Promotion\nMarketing copy draft - for review only\nDocument\nID BG-PDF-TEST-001 Status Draft / Not approved\nBrand Acme Fintech (fictional) Campaign Q4 card rewards\nDraft content\nAcme Fintech has the Leading card in the market. Our rewards are\ncan help improve for every customer, with zero fees for\neveryone. Join thousands of customers today. CLICK HERE to apply. A\npromotional rate is available to qualified applicants.\nReviewer note: This draft has not been approved. Supporting evidence and required promotional disclosures have\nnot been attached.\n\n-- 1 of 1 --",
+          "note": "Applied suggested correction for rule R-7",
+          "fixedRule": "R-7",
+          "createdAt": "2026-10-24T17:57:32.069Z"
+        },
+        {
+          "version": "v7",
+          "text": "Synthetic test document | BrandGuard AI Page 1\nBRANDGUARD AI / PDF UPLOAD TEST\nQ4 Card Rewards Promotion\nMarketing copy draft - for review only\nDocument\nID BG-PDF-TEST-001 Status Draft / Not approved\nBrand Acme Fintech (fictional) Campaign Q4 card rewards\nDraft content\nAcme Fintech has the Leading card in the market. Our rewards are\ncan help improve for every customer, with zero fees for\neveryone. Join thousands of customers today. Learn more about pricing to apply. A\npromotional rate is available to qualified applicants.\nReviewer note: This draft has not been approved. Supporting evidence and required promotional disclosures have\nnot been attached.\n\n-- 1 of 1 --",
+          "note": "Applied suggested correction for rule A-2",
+          "fixedRule": "A-2",
+          "createdAt": "2026-10-24T17:57:35.306Z"
         }
       ]
     },
@@ -164,6 +269,48 @@
           "text": "Best card #1 guaranteed rewards with zero fees for all users. CLICK HERE.",
           "note": "Agency submission",
           "createdAt": "2026-10-23T13:36:45.114Z"
+        },
+        {
+          "version": "v2",
+          "text": "Best card #1 guaranteed rewards with zero fees for all users. Learn more about pricing.",
+          "note": "Applied suggested correction for rule A-2",
+          "fixedRule": "A-2",
+          "createdAt": "2026-10-24T15:58:23.139Z"
+        },
+        {
+          "version": "v3",
+          "text": "Best card #1 guaranteed rewards with zero fees for all customers. Learn more about pricing.",
+          "note": "Applied suggested correction for rule R-7",
+          "fixedRule": "R-7",
+          "createdAt": "2026-10-24T16:01:04.383Z"
+        },
+        {
+          "version": "v4",
+          "text": "Best card #1 guaranteed rewards with zero fees for all customers. Learn more about pricing.",
+          "note": "Applied suggested correction for rule R-7",
+          "fixedRule": "R-7",
+          "createdAt": "2026-10-24T16:11:26.092Z"
+        },
+        {
+          "version": "v5",
+          "text": "Best card #1 flexible rewards with zero fees for all customers. Learn more about pricing.",
+          "note": "Applied suggested correction for rule R-1",
+          "fixedRule": "R-1",
+          "createdAt": "2026-10-24T17:00:30.241Z"
+        },
+        {
+          "version": "v6",
+          "text": "Best card Top-rated flexible rewards with zero fees for all customers. Learn more about pricing.",
+          "note": "Applied suggested correction for rule R-1",
+          "fixedRule": "R-1",
+          "createdAt": "2026-10-24T17:00:31.120Z"
+        },
+        {
+          "version": "v7",
+          "text": "Leading card Top-rated flexible rewards with zero fees for all customers. Learn more about pricing.",
+          "note": "Applied suggested correction for rule R-1",
+          "fixedRule": "R-1",
+          "createdAt": "2026-10-24T17:00:31.951Z"
         }
       ]
     },
@@ -306,10 +453,9 @@
       "evidence_status": "not_enough_information",
       "human_review_required": true,
       "suggested_revision": "can help improve",
-      "status": "dismissed",
+      "status": "active",
       "draftId": "draft-1",
-      "version": "v2",
-      "dismissReason": "Legal pre-approved for Q4 campaign"
+      "version": "v5"
     },
     {
       "id": "f_r7_73",
@@ -325,7 +471,7 @@
       "suggested_revision": "customers",
       "status": "active",
       "draftId": "draft-1",
-      "version": "v2"
+      "version": "v5"
     },
     {
       "id": "f_a2_86",
@@ -341,7 +487,7 @@
       "suggested_revision": "Learn more about pricing",
       "status": "dismissed",
       "draftId": "draft-1",
-      "version": "v2",
+      "version": "v5",
       "dismissReason": "Approved legal exception for promotional link"
     },
     {
@@ -356,27 +502,25 @@
       "evidence_status": "not_enough_information",
       "human_review_required": true,
       "suggested_revision": "can help improve",
-      "status": "dismissed",
+      "status": "active",
       "draftId": "draft-1",
-      "version": "v3",
-      "dismissReason": "Legal pre-approved for Q4 campaign"
+      "version": "v8"
     },
     {
-      "id": "f_a2_90",
-      "ruleId": "A-2",
-      "category": "accessibility",
-      "severity": "low",
-      "quoted_text": "CLICK HERE",
-      "start": 90,
-      "end": 100,
-      "explanation": "Non-descriptive link text and all caps.",
+      "id": "f_r7_73",
+      "ruleId": "R-7",
+      "category": "terminology",
+      "severity": "medium",
+      "quoted_text": "users",
+      "start": 73,
+      "end": 78,
+      "explanation": "Brand term is 'customers'.",
       "evidence_status": "rule_match",
       "human_review_required": false,
-      "suggested_revision": "Learn more about pricing",
-      "status": "dismissed",
+      "suggested_revision": "customers",
+      "status": "active",
       "draftId": "draft-1",
-      "version": "v3",
-      "dismissReason": "Approved exception for promotional link"
+      "version": "v8"
     },
     {
       "id": "f_a2_86",
@@ -390,9 +534,581 @@
       "evidence_status": "rule_match",
       "human_review_required": false,
       "suggested_revision": "Learn more about pricing",
+      "status": "dismissed",
+      "draftId": "draft-1",
+      "version": "v8",
+      "dismissReason": "Approved legal exception for promotional link"
+    },
+    {
+      "id": "f_r7_69",
+      "ruleId": "R-7",
+      "category": "terminology",
+      "severity": "medium",
+      "quoted_text": "users",
+      "start": 69,
+      "end": 74,
+      "explanation": "Brand term is 'customers'.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "customers",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v9"
+    },
+    {
+      "id": "f_a2_82",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "start": 82,
+      "end": 92,
+      "explanation": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v9"
+    },
+    {
+      "id": "f_a2_86",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "start": 86,
+      "end": 96,
+      "explanation": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "dismissed",
+      "draftId": "draft-1",
+      "version": "v10",
+      "dismissReason": "Approved legal exception for promotional link"
+    },
+    {
+      "id": "f_r1_16",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "guaranteed to double",
+      "start": 16,
+      "end": 36,
+      "explanation": "Absolute claim with no approved source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "can help improve",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v11"
+    },
+    {
+      "id": "f_a2_86",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "start": 86,
+      "end": 96,
+      "explanation": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "dismissed",
+      "draftId": "draft-1",
+      "version": "v11",
+      "dismissReason": "Approved legal exception for promotional link"
+    },
+    {
+      "id": "f_a2_82",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "start": 82,
+      "end": 92,
+      "explanation": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v12"
+    },
+    {
+      "id": "f_r7_55",
+      "ruleId": "R-7",
+      "category": "terminology",
+      "severity": "medium",
+      "quoted_text": "users",
+      "start": 55,
+      "end": 60,
+      "explanation": "Brand term is 'customers'.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "customers",
+      "status": "active",
+      "draftId": "draft-2",
+      "version": "v3"
+    },
+    {
+      "id": "f_r1_0",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "Best",
+      "start": 0,
+      "end": 4,
+      "explanation": "Absolute claim \"Best\" with no approved benchmark source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "Leading",
+      "status": "active",
+      "draftId": "draft-2",
+      "version": "v4"
+    },
+    {
+      "id": "f_r1_10",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "#1",
+      "start": 10,
+      "end": 12,
+      "explanation": "Unsubstantiated ranking claim \"#1\" with no accredited third-party study.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "Top-rated",
+      "status": "active",
+      "draftId": "draft-2",
+      "version": "v4"
+    },
+    {
+      "id": "f_r1_13",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "guaranteed",
+      "start": 13,
+      "end": 23,
+      "explanation": "Unqualified performance guarantee with no approved underwriting terms.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "flexible",
+      "status": "active",
+      "draftId": "draft-2",
+      "version": "v4"
+    },
+    {
+      "id": "f_r1_0",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "Best",
+      "start": 0,
+      "end": 4,
+      "explanation": "Absolute claim \"Best\" with no approved benchmark source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "Leading",
+      "status": "active",
+      "draftId": "draft-2",
+      "version": "v5"
+    },
+    {
+      "id": "f_r1_10",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "#1",
+      "start": 10,
+      "end": 12,
+      "explanation": "Unsubstantiated ranking claim \"#1\" with no accredited third-party study.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "Top-rated",
+      "status": "active",
+      "draftId": "draft-2",
+      "version": "v5"
+    },
+    {
+      "id": "f_r1_0",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "Best",
+      "start": 0,
+      "end": 4,
+      "explanation": "Absolute claim \"Best\" with no approved benchmark source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "Leading",
+      "status": "active",
+      "draftId": "draft-2",
+      "version": "v6"
+    },
+    {
+      "id": "f_r1_21",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "best",
+      "quote": "best",
+      "start": 21,
+      "end": 25,
+      "characterStart": 21,
+      "characterEnd": 25,
+      "explanation": "Absolute claim \"Best\" with no approved benchmark source.",
+      "message": "Absolute claim \"Best\" with no approved benchmark source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "Leading",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v14"
+    },
+    {
+      "id": "f_r1_62",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "guaranteed to double",
+      "quote": "guaranteed to double",
+      "start": 62,
+      "end": 82,
+      "characterStart": 62,
+      "characterEnd": 82,
+      "explanation": "Absolute claim with no approved source.",
+      "message": "Absolute claim with no approved source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "can help improve",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v14"
+    },
+    {
+      "id": "f_r7_150",
+      "ruleId": "R-7",
+      "category": "terminology",
+      "severity": "medium",
+      "quoted_text": "users",
+      "quote": "users",
+      "start": 150,
+      "end": 155,
+      "characterStart": 150,
+      "characterEnd": 155,
+      "explanation": "Brand term is 'customers'.",
+      "message": "Brand term is 'customers'.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "customers",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v14"
+    },
+    {
+      "id": "f_a2_163",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "quote": "CLICK HERE",
+      "start": 163,
+      "end": 173,
+      "characterStart": 163,
+      "characterEnd": 173,
+      "explanation": "Non-descriptive link text and all caps.",
+      "message": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v14"
+    },
+    {
+      "id": "f_r1_16",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "guaranteed to double",
+      "quote": "guaranteed to double",
+      "start": 16,
+      "end": 36,
+      "characterStart": 16,
+      "characterEnd": 36,
+      "explanation": "Absolute claim with no approved source.",
+      "message": "Absolute claim with no approved source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "can help improve",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v2"
+    },
+    {
+      "id": "f_r7_73",
+      "ruleId": "R-7",
+      "category": "terminology",
+      "severity": "medium",
+      "quoted_text": "users",
+      "quote": "users",
+      "start": 73,
+      "end": 78,
+      "characterStart": 73,
+      "characterEnd": 78,
+      "explanation": "Brand term is 'customers'.",
+      "message": "Brand term is 'customers'.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "customers",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v2"
+    },
+    {
+      "id": "f_a2_86",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "quote": "CLICK HERE",
+      "start": 86,
+      "end": 96,
+      "characterStart": 86,
+      "characterEnd": 96,
+      "explanation": "Non-descriptive link text and all caps.",
+      "message": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "dismissed",
+      "draftId": "draft-1",
+      "version": "v2",
+      "dismissReason": "Approved legal exception for promotional link"
+    },
+    {
+      "id": "f_r1_16",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "guaranteed to double",
+      "quote": "guaranteed to double",
+      "start": 16,
+      "end": 36,
+      "characterStart": 16,
+      "characterEnd": 36,
+      "explanation": "Absolute claim with no approved source.",
+      "message": "Absolute claim with no approved source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "can help improve",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v3"
+    },
+    {
+      "id": "f_a2_90",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "quote": "CLICK HERE",
+      "start": 90,
+      "end": 100,
+      "characterStart": 90,
+      "characterEnd": 100,
+      "explanation": "Non-descriptive link text and all caps.",
+      "message": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v3"
+    },
+    {
+      "id": "f_r1_335",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "guaranteed to double",
+      "quote": "guaranteed to double",
+      "start": 335,
+      "end": 355,
+      "characterStart": 335,
+      "characterEnd": 355,
+      "explanation": "Absolute claim with no approved source.",
+      "message": "Absolute claim with no approved source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "can help improve",
       "status": "active",
       "draftId": "draft-1",
       "version": "v4"
+    },
+    {
+      "id": "f_r7_423",
+      "ruleId": "R-7",
+      "category": "terminology",
+      "severity": "medium",
+      "quoted_text": "users",
+      "quote": "users",
+      "start": 423,
+      "end": 428,
+      "characterStart": 423,
+      "characterEnd": 428,
+      "explanation": "Brand term is 'customers'.",
+      "message": "Brand term is 'customers'.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "customers",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v4"
+    },
+    {
+      "id": "f_a2_436",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "quote": "CLICK HERE",
+      "start": 436,
+      "end": 446,
+      "characterStart": 436,
+      "characterEnd": 446,
+      "explanation": "Non-descriptive link text and all caps.",
+      "message": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v4"
+    },
+    {
+      "id": "f_a2_436",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "quote": "CLICK HERE",
+      "start": 436,
+      "end": 446,
+      "characterStart": 436,
+      "characterEnd": 446,
+      "explanation": "Non-descriptive link text and all caps.",
+      "message": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "active",
+      "draftId": "draft-1",
+      "version": "v6"
+    },
+    {
+      "id": "f_r1_0",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "Best",
+      "quote": "Best",
+      "start": 0,
+      "end": 4,
+      "characterStart": 0,
+      "characterEnd": 4,
+      "explanation": "Absolute claim \"Best\" with no approved benchmark source.",
+      "message": "Absolute claim \"Best\" with no approved benchmark source.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "Leading",
+      "status": "active",
+      "draftId": "draft-2",
+      "version": "v1"
+    },
+    {
+      "id": "f_r1_10",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "#1",
+      "quote": "#1",
+      "start": 10,
+      "end": 12,
+      "characterStart": 10,
+      "characterEnd": 12,
+      "explanation": "Unsubstantiated ranking claim \"#1\" with no accredited third-party study.",
+      "message": "Unsubstantiated ranking claim \"#1\" with no accredited third-party study.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "Top-rated",
+      "status": "active",
+      "draftId": "draft-2",
+      "version": "v1"
+    },
+    {
+      "id": "f_r1_13",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "guaranteed",
+      "quote": "guaranteed",
+      "start": 13,
+      "end": 23,
+      "characterStart": 13,
+      "characterEnd": 23,
+      "explanation": "Unqualified performance guarantee with no approved underwriting terms.",
+      "message": "Unqualified performance guarantee with no approved underwriting terms.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "flexible",
+      "status": "active",
+      "draftId": "draft-2",
+      "version": "v1"
+    },
+    {
+      "id": "f_r7_55",
+      "ruleId": "R-7",
+      "category": "terminology",
+      "severity": "medium",
+      "quoted_text": "users",
+      "quote": "users",
+      "start": 55,
+      "end": 60,
+      "characterStart": 55,
+      "characterEnd": 60,
+      "explanation": "Brand term is 'customers'.",
+      "message": "Brand term is 'customers'.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "customers",
+      "status": "active",
+      "draftId": "draft-2",
+      "version": "v1"
+    },
+    {
+      "id": "f_a2_62",
+      "ruleId": "A-2",
+      "category": "accessibility",
+      "severity": "low",
+      "quoted_text": "CLICK HERE",
+      "quote": "CLICK HERE",
+      "start": 62,
+      "end": 72,
+      "characterStart": 62,
+      "characterEnd": 72,
+      "explanation": "Non-descriptive link text and all caps.",
+      "message": "Non-descriptive link text and all caps.",
+      "evidence_status": "rule_match",
+      "human_review_required": false,
+      "suggested_revision": "Learn more about pricing",
+      "status": "active",
+      "draftId": "draft-2",
+      "version": "v1"
     }
   ],
   "decisions": [
@@ -434,6 +1150,126 @@
       "reviewer": "Sarah Chen (Reviewer)",
       "decision": "Approved",
       "comment": "All policy guidelines satisfied",
+      "version": "v3"
+    },
+    {
+      "id": "dec_1792858153266",
+      "draftId": "draft-1",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "decision": "Approved",
+      "comment": "hgvghgh",
+      "version": "v14"
+    },
+    {
+      "id": "dec_1792858154654",
+      "draftId": "draft-1",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "decision": "Approved",
+      "comment": "hgvghgh",
+      "version": "v14"
+    },
+    {
+      "id": "dec_1792858155423",
+      "draftId": "draft-1",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "decision": "Changes requested",
+      "comment": "hgvghgh",
+      "version": "v14"
+    },
+    {
+      "id": "dec_1792858156256",
+      "draftId": "draft-1",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "decision": "Rejected",
+      "comment": "hgvghgh",
+      "version": "v14"
+    },
+    {
+      "id": "dec_1792861104544",
+      "draftId": "draft-2",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "decision": "Changes requested",
+      "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed) before publishing.",
+      "version": "v4"
+    },
+    {
+      "draftId": "draft-2",
+      "decision": "Changes requested",
+      "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "timestamp": "2026-10-24T17:46:43.871Z"
+    },
+    {
+      "draftId": "draft-2",
+      "decision": "Changes requested",
+      "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "timestamp": "2026-10-24T17:46:43.875Z"
+    },
+    {
+      "id": "dec_1792864004609",
+      "draftId": "draft-1",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "decision": "Changes requested",
+      "comment": "Please substantiate 2x claim before approval.",
+      "version": "v3"
+    },
+    {
+      "draftId": "draft-2",
+      "decision": "Changes requested",
+      "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "timestamp": "2026-10-24T17:49:11.645Z"
+    },
+    {
+      "draftId": "draft-2",
+      "decision": "Changes requested",
+      "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "timestamp": "2026-10-24T17:49:11.649Z"
+    },
+    {
+      "draftId": "draft-2",
+      "decision": "Changes requested",
+      "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "timestamp": "2026-10-24T17:50:10.811Z"
+    },
+    {
+      "draftId": "draft-2",
+      "decision": "Changes requested",
+      "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "timestamp": "2026-10-24T17:50:10.815Z"
+    },
+    {
+      "id": "dec_1792864211532",
+      "draftId": "draft-1",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "decision": "Changes requested",
+      "comment": "Please substantiate 2x claim before approval.",
+      "version": "v3"
+    },
+    {
+      "draftId": "draft-2",
+      "decision": "Changes requested",
+      "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "timestamp": "2026-10-24T17:51:51.903Z"
+    },
+    {
+      "draftId": "draft-2",
+      "decision": "Changes requested",
+      "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "timestamp": "2026-10-24T17:51:51.907Z"
+    },
+    {
+      "id": "dec_1792864312729",
+      "draftId": "draft-1",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "decision": "Changes requested",
+      "comment": "Please substantiate 2x claim before approval.",
       "version": "v3"
     }
   ],
@@ -796,6 +1632,755 @@
       "from": "v4",
       "to": "v5",
       "comment": "Applied suggested fix for rule A-2: 'Learn more about pricing'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792855589458",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "Approved",
+      "to": "In review",
+      "comment": "Submitted revision v5 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792855590744",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v5 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792855591158",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v5 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792855591382",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v5 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792855642830",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-1 v1.2",
+      "to": "R-1 v1.2 (Active: false)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792855643666",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-1 v1.2",
+      "to": "R-1 v1.2 (Active: true)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792856877183",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v5",
+      "to": "v6",
+      "comment": "Applied suggested fix for rule R-1: 'can help improve'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792856885254",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v6",
+      "to": "v7",
+      "comment": "Applied suggested fix for rule A-2: 'Learn more about pricing'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792856891183",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v7",
+      "to": "v8",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792856894641",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v8 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792856895874",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v8 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792856995393",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v8 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792856995586",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v8 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792856995812",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v8 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792857053020",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v8",
+      "to": "v9",
+      "comment": "Applied suggested fix for rule R-1: 'can help improve'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792857054214",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v9",
+      "to": "v10",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792857055836",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v10 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792857057471",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v10",
+      "to": "v11",
+      "comment": "Applied suggested fix for rule A-2: 'Learn more about pricing'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792857137591",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-7 v1.0",
+      "to": "R-7 v1.0 (Active: false)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792857206449",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v11",
+      "to": "v12",
+      "comment": "Applied suggested fix for rule R-1: 'can help improve'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792857214499",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v12 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792857217592",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v12",
+      "to": "v13",
+      "comment": "Applied suggested fix for rule A-2: 'Learn more about pricing'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792857503149",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v1",
+      "to": "v2",
+      "comment": "Applied suggested fix for rule A-2: 'Learn more about pricing'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792857664389",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v2",
+      "to": "v3",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792857930414",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v13",
+      "to": "v14",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_decision_1792858153271",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Recorded decision (Approved)",
+      "from": "In review",
+      "to": "Approved",
+      "comment": "hgvghgh",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_decision_1792858154661",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Recorded decision (Approved)",
+      "from": "Approved",
+      "to": "Approved",
+      "comment": "hgvghgh",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_decision_1792858155426",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Recorded decision (Changes requested)",
+      "from": "Approved",
+      "to": "Changes requested",
+      "comment": "hgvghgh",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_decision_1792858156261",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Recorded decision (Rejected)",
+      "from": "Changes requested",
+      "to": "Rejected",
+      "comment": "hgvghgh",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792858157208",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "Rejected",
+      "to": "In review",
+      "comment": "Submitted revision v14 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792858157387",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v14 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792858157645",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v14 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792858157909",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v14 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792858158089",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v14 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792858255420",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-7 v1.0",
+      "to": "R-7 v1.0 (Active: true)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792858286098",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v3",
+      "to": "v4",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792858862726",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v14 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_decision_1792861104569",
+      "draftId": "draft-2",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Recorded decision (Changes requested)",
+      "from": "Changes requested",
+      "to": "Changes requested",
+      "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed) before publishing.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792861230246",
+      "draftId": "draft-2",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v4",
+      "to": "v5",
+      "comment": "Applied suggested fix for rule R-1: 'flexible'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792861231127",
+      "draftId": "draft-2",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v5",
+      "to": "v6",
+      "comment": "Applied suggested fix for rule R-1: 'Top-rated'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792861231955",
+      "draftId": "draft-2",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v6",
+      "to": "v7",
+      "comment": "Applied suggested fix for rule R-1: 'Leading'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792861241739",
+      "draftId": "draft-2",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "Changes requested",
+      "to": "In review",
+      "comment": "Submitted revision v7 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792861242747",
+      "draftId": "draft-2",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v7 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792862657891",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v14 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit-1792864003873",
+      "draftId": "draft-2",
+      "action": "decision_recorded",
+      "actor": "Sarah Chen (Reviewer)",
+      "details": {
+        "draftId": "draft-2",
+        "decision": "Changes requested",
+        "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+        "reviewer": "Sarah Chen (Reviewer)",
+        "timestamp": "2026-10-24T17:46:43.871Z"
+      },
+      "timestamp": "2026-10-24T17:46:43.873Z"
+    },
+    {
+      "id": "audit-1792864003876",
+      "draftId": "draft-2",
+      "action": "decision_recorded",
+      "actor": "Sarah Chen (Reviewer)",
+      "details": {
+        "draftId": "draft-2",
+        "decision": "Changes requested",
+        "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+        "reviewer": "Sarah Chen (Reviewer)",
+        "timestamp": "2026-10-24T17:46:43.875Z"
+      },
+      "timestamp": "2026-10-24T17:46:43.877Z"
+    },
+    {
+      "id": "audit_rule_1792864004539",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: false)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792864004550",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: true)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_dismiss_1792864004584",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_a2_86 bypassed on draft-1 with justification: \"Approved legal exception for promotional link\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792864004593",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v14",
+      "to": "v3",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_decision_1792864004611",
+      "draftId": "draft-1",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Recorded decision (Changes requested)",
+      "from": "In review",
+      "to": "Changes requested",
+      "comment": "Please substantiate 2x claim before approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit-1792864151647",
+      "draftId": "draft-2",
+      "action": "decision_recorded",
+      "actor": "Sarah Chen (Reviewer)",
+      "details": {
+        "draftId": "draft-2",
+        "decision": "Changes requested",
+        "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+        "reviewer": "Sarah Chen (Reviewer)",
+        "timestamp": "2026-10-24T17:49:11.645Z"
+      },
+      "timestamp": "2026-10-24T17:49:11.647Z"
+    },
+    {
+      "id": "audit-1792864151651",
+      "draftId": "draft-2",
+      "action": "decision_recorded",
+      "actor": "Sarah Chen (Reviewer)",
+      "details": {
+        "draftId": "draft-2",
+        "decision": "Changes requested",
+        "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+        "reviewer": "Sarah Chen (Reviewer)",
+        "timestamp": "2026-10-24T17:49:11.649Z"
+      },
+      "timestamp": "2026-10-24T17:49:11.652Z"
+    },
+    {
+      "id": "audit_upload_1792864152431",
+      "draftId": "draft-upload-test",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Uploaded document draft",
+      "from": "Local file",
+      "to": "sample_draft.txt (0.1 KB)",
+      "comment": "Extracted 17 words (109 chars) from sample_draft.txt",
+      "time": "Just now"
+    },
+    {
+      "id": "audit-1792864210812",
+      "draftId": "draft-2",
+      "action": "decision_recorded",
+      "actor": "Sarah Chen (Reviewer)",
+      "details": {
+        "draftId": "draft-2",
+        "decision": "Changes requested",
+        "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+        "reviewer": "Sarah Chen (Reviewer)",
+        "timestamp": "2026-10-24T17:50:10.811Z"
+      },
+      "timestamp": "2026-10-24T17:50:10.812Z"
+    },
+    {
+      "id": "audit-1792864210817",
+      "draftId": "draft-2",
+      "action": "decision_recorded",
+      "actor": "Sarah Chen (Reviewer)",
+      "details": {
+        "draftId": "draft-2",
+        "decision": "Changes requested",
+        "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+        "reviewer": "Sarah Chen (Reviewer)",
+        "timestamp": "2026-10-24T17:50:10.815Z"
+      },
+      "timestamp": "2026-10-24T17:50:10.817Z"
+    },
+    {
+      "id": "audit_rule_1792864211457",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: false)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792864211472",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: true)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_dismiss_1792864211507",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_a2_86 bypassed on draft-1 with justification: \"Approved legal exception for promotional link\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792864211518",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v3",
+      "to": "v3",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_decision_1792864211534",
+      "draftId": "draft-1",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Recorded decision (Changes requested)",
+      "from": "Changes requested",
+      "to": "Changes requested",
+      "comment": "Please substantiate 2x claim before approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit-1792864311904",
+      "draftId": "draft-2",
+      "action": "decision_recorded",
+      "actor": "Sarah Chen (Reviewer)",
+      "details": {
+        "draftId": "draft-2",
+        "decision": "Changes requested",
+        "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+        "reviewer": "Sarah Chen (Reviewer)",
+        "timestamp": "2026-10-24T17:51:51.903Z"
+      },
+      "timestamp": "2026-10-24T17:51:51.904Z"
+    },
+    {
+      "id": "audit-1792864311910",
+      "draftId": "draft-2",
+      "action": "decision_recorded",
+      "actor": "Sarah Chen (Reviewer)",
+      "details": {
+        "draftId": "draft-2",
+        "decision": "Changes requested",
+        "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+        "reviewer": "Sarah Chen (Reviewer)",
+        "timestamp": "2026-10-24T17:51:51.907Z"
+      },
+      "timestamp": "2026-10-24T17:51:51.910Z"
+    },
+    {
+      "id": "audit_rule_1792864312652",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: false)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_rule_1792864312670",
+      "actor": "Marcus Brody (Admin)",
+      "action": "Updated rule",
+      "from": "R-4 v1.0",
+      "to": "R-4 v1.0 (Active: true)",
+      "comment": "Rule configuration modified via admin workspace API.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_dismiss_1792864312704",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_a2_86 bypassed on draft-1 with justification: \"Approved legal exception for promotional link\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792864312714",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v3",
+      "to": "v3",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_decision_1792864312732",
+      "draftId": "draft-1",
+      "actor": "Sarah Chen (Reviewer)",
+      "action": "Recorded decision (Changes requested)",
+      "from": "Changes requested",
+      "to": "Changes requested",
+      "comment": "Please substantiate 2x claim before approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_upload_1792864379963",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Uploaded document draft",
+      "from": "Local file",
+      "to": "BrandGuard_PDF_Upload_Test.pdf (2.7 KB)",
+      "comment": "Extracted 106 words (654 chars) from BrandGuard_PDF_Upload_Test.pdf",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_upload_1792864544680",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Uploaded document draft",
+      "from": "Local file",
+      "to": "BrandGuard_PDF_Upload_Test.pdf (2.7 KB)",
+      "comment": "Extracted 106 words (654 chars) from BrandGuard_PDF_Upload_Test.pdf",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792864648957",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v3",
+      "to": "v4",
+      "comment": "Applied suggested fix for rule R-1: 'Leading'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792864652073",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v4",
+      "to": "v6",
+      "comment": "Applied suggested fix for rule R-7: 'customers'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_accept_1792864655321",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v6",
+      "to": "v7",
+      "comment": "Applied suggested fix for rule A-2: 'Learn more about pricing'",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792864673130",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "Changes requested",
+      "to": "In review",
+      "comment": "Submitted revision v7 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_submit_1792864674588",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v7 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_upload_1792864691441",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Uploaded document draft",
+      "from": "Local file",
+      "to": "BrandGuard_PDF_Upload_Test.pdf (2.7 KB)",
+      "comment": "Extracted 106 words (654 chars) from BrandGuard_PDF_Upload_Test.pdf",
       "time": "Just now"
     }
   ]
