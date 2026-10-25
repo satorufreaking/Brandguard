@@ -25,7 +25,7 @@ let dbMode = 'uninitialized'; // 'mongodb' | 'embedded'
 let embeddedStore = null;
 
 export function isMongoRequired() {
-  return process.env.NODE_ENV === 'production' || process.env.REQUIRE_MONGODB === 'true';
+  return process.env.REQUIRE_MONGODB === 'true';
 }
 
 // Embedded file-backed persistence store for offline / local demo fallback
