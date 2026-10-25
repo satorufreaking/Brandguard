@@ -2,7 +2,8 @@
  * BrandGuard - Central API Service Layer (Connected to Express Backend & MongoDB Atlas)
  */
 
-export const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
+export const API_BASE_URL =
+  (import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000' : '')).replace(/\/+$/, '');
 
 export const INITIAL_DRAFT_TEXT =
   "Our software is guaranteed to double every customer's productivity. Join users today. CLICK HERE to learn more.";
