@@ -356,6 +356,298 @@
           "createdAt": "2026-10-23T16:54:22.487Z"
         }
       ]
+    },
+    {
+      "id": "draft-b2e8b9a8-c77f-4731-bd52-2ec04e600858",
+      "title": "Regression 7e46181e-9acb-4543-b14b-8dc96bc2f155",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "Draft",
+      "currentVersion": "v2",
+      "currentText": "Approved copy has been edited.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Approved copy is unchanged.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:51:41.477Z"
+        },
+        {
+          "version": "v2",
+          "text": "Approved copy has been edited.",
+          "note": "Saved draft edits",
+          "createdAt": "2026-10-25T11:51:41.505Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-b3053ef3-eca9-43d4-9866-bfd2d3bfba9b",
+      "title": "Regression 9727c35f-5e02-4631-a59a-f595bff8b4b8",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "Draft",
+      "currentVersion": "v1",
+      "currentText": "Our offer is 100% effective.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Our offer is 100% effective.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:51:41.518Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-18955f30-d18f-422d-8a61-935cb0dffbec",
+      "title": "Regression ea2717ee-34b9-4411-b7a0-c981891b9d5d",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "Draft",
+      "currentVersion": "v2",
+      "currentText": "Our offer is 100% effective. Updated.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Our offer is 100% effective.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:51:41.570Z"
+        },
+        {
+          "version": "v2",
+          "text": "Our offer is 100% effective. Updated.",
+          "note": "Saved draft edits",
+          "createdAt": "2026-10-25T11:51:41.607Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-d5f787cc-1649-4624-9a3b-b648e71f44ac",
+      "title": "Regression b76cf70a-b3f5-4c39-8fa8-c3ce85b9d350",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "In review",
+      "currentVersion": "v1",
+      "currentText": "Clear and accurate content.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Clear and accurate content.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:51:41.629Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-9be4d1cb-dd9d-40f8-9567-5830585392a4",
+      "title": "Regression 8f266805-37c9-4767-97a1-5ad73e92e111",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "Draft",
+      "currentVersion": "v1",
+      "currentText": "   \n\t  ",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "   \n\t  ",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:51:41.665Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-a62a1e79-03bb-481e-a8d7-e7175ee473d1",
+      "title": "Regression 93e03cb4-9e94-43dd-95a3-ab4c5e55a962",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "Draft",
+      "currentVersion": "v2",
+      "currentText": "First competing edit.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Original valid content.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:51:41.680Z"
+        },
+        {
+          "version": "v2",
+          "text": "First competing edit.",
+          "note": "Saved draft edits",
+          "createdAt": "2026-10-25T11:51:41.691Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-0ffeba79-aac8-48d8-811d-0d10e2b95776",
+      "title": "Regression 6ad6bbde-4db8-45e0-aabb-1575dc525cca",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "In review",
+      "currentVersion": "v1",
+      "currentText": "Clear content for a single review submission.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Clear content for a single review submission.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:51:41.702Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-3ccc2063-2d04-413a-a68f-8d6b80cdc962",
+      "title": "Regression a6d76b57-2143-43c2-907c-286d7f7428f7",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "Draft",
+      "currentVersion": "v1",
+      "currentText": "Plain content.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Plain content.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:51:41.725Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-ecafb3ff-e35c-468d-8616-8d21dc192fd3",
+      "title": "Regression f0c81951-6306-4cd4-94ea-edfa3c60aade",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "Draft",
+      "currentVersion": "v2",
+      "currentText": "Approved copy has been edited.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Approved copy is unchanged.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:52:12.331Z"
+        },
+        {
+          "version": "v2",
+          "text": "Approved copy has been edited.",
+          "note": "Saved draft edits",
+          "createdAt": "2026-10-25T11:52:12.354Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-07ae9766-98f9-4e92-95a3-966a3fed14c4",
+      "title": "Regression 752b0f6b-5277-4dd3-959e-b69eee3ab3dd",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "Draft",
+      "currentVersion": "v1",
+      "currentText": "Our offer is 100% effective.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Our offer is 100% effective.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:52:12.374Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-20ee7ae0-9e6e-464b-89a0-3e0a9874a9f2",
+      "title": "Regression 8451d09d-3ced-4c84-b41a-82c83ec11eb8",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "Draft",
+      "currentVersion": "v2",
+      "currentText": "Our offer is 100% effective. Updated.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Our offer is 100% effective.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:52:12.494Z"
+        },
+        {
+          "version": "v2",
+          "text": "Our offer is 100% effective. Updated.",
+          "note": "Saved draft edits",
+          "createdAt": "2026-10-25T11:52:12.528Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-9cb415d8-acb1-45c0-a602-fad50886ed59",
+      "title": "Regression b95043de-a4ee-4832-a096-84dd56d08495",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "In review",
+      "currentVersion": "v1",
+      "currentText": "Clear and accurate content.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Clear and accurate content.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:52:12.567Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-9beb5bfa-5b00-486c-961b-43c58e9a3307",
+      "title": "Regression ed6277c6-96a6-49e5-969b-71b95a4d5d40",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "Draft",
+      "currentVersion": "v1",
+      "currentText": "   \n\t  ",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "   \n\t  ",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:52:12.602Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-9b2ed44c-e4ab-4ce8-87ce-de9637ed5e4d",
+      "title": "Regression fe29996c-f500-4a1e-823b-b17ce8e40bda",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "Draft",
+      "currentVersion": "v2",
+      "currentText": "First competing edit.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Original valid content.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:52:12.614Z"
+        },
+        {
+          "version": "v2",
+          "text": "First competing edit.",
+          "note": "Saved draft edits",
+          "createdAt": "2026-10-25T11:52:12.627Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-ca8677bc-cabd-4730-8e17-14a9101ead14",
+      "title": "Regression f1dc2639-cbee-426d-bfb4-011a898a16dd",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "In review",
+      "currentVersion": "v1",
+      "currentText": "Clear content for a single review submission.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Clear content for a single review submission.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:52:12.639Z"
+        }
+      ]
+    },
+    {
+      "id": "draft-7c69c875-dd1d-42f6-9b53-43a46de3b4a0",
+      "title": "Regression 1bb67220-8af0-48ea-9315-bdf0f1ed6e19",
+      "submitter": "Alex Rivera (Creator)",
+      "status": "Draft",
+      "currentVersion": "v1",
+      "currentText": "Plain content.",
+      "revisions": [
+        {
+          "version": "v1",
+          "text": "Plain content.",
+          "note": "Draft created",
+          "createdAt": "2026-10-25T11:52:12.666Z"
+        }
+      ]
     }
   ],
   "findings": [
@@ -1109,6 +1401,130 @@
       "status": "active",
       "draftId": "draft-2",
       "version": "v1"
+    },
+    {
+      "id": "f_r_1_13",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "100%",
+      "quote": "100%",
+      "start": 13,
+      "end": 17,
+      "characterStart": 13,
+      "characterEnd": 17,
+      "explanation": "Absolute 100% claim requires approved substantiation.",
+      "message": "Absolute 100% claim requires approved substantiation.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "a high level of",
+      "status": "active",
+      "dismissReason": "",
+      "draftId": "draft-b3053ef3-eca9-43d4-9866-bfd2d3bfba9b",
+      "version": "v1"
+    },
+    {
+      "id": "f_r_1_13",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "100%",
+      "quote": "100%",
+      "start": 13,
+      "end": 17,
+      "characterStart": 13,
+      "characterEnd": 17,
+      "explanation": "Absolute 100% claim requires approved substantiation.",
+      "message": "Absolute 100% claim requires approved substantiation.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "a high level of",
+      "status": "dismissed",
+      "draftId": "draft-18955f30-d18f-422d-8a61-935cb0dffbec",
+      "version": "v1",
+      "dismissReason": "Reviewed evidence."
+    },
+    {
+      "id": "f_r_1_13",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "100%",
+      "quote": "100%",
+      "start": 13,
+      "end": 17,
+      "characterStart": 13,
+      "characterEnd": 17,
+      "explanation": "Absolute 100% claim requires approved substantiation.",
+      "message": "Absolute 100% claim requires approved substantiation.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "a high level of",
+      "status": "active",
+      "draftId": "draft-18955f30-d18f-422d-8a61-935cb0dffbec",
+      "version": "v2"
+    },
+    {
+      "id": "f_r_1_13",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "100%",
+      "quote": "100%",
+      "start": 13,
+      "end": 17,
+      "characterStart": 13,
+      "characterEnd": 17,
+      "explanation": "Absolute 100% claim requires approved substantiation.",
+      "message": "Absolute 100% claim requires approved substantiation.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "a high level of",
+      "status": "active",
+      "dismissReason": "",
+      "draftId": "draft-07ae9766-98f9-4e92-95a3-966a3fed14c4",
+      "version": "v1"
+    },
+    {
+      "id": "f_r_1_13",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "100%",
+      "quote": "100%",
+      "start": 13,
+      "end": 17,
+      "characterStart": 13,
+      "characterEnd": 17,
+      "explanation": "Absolute 100% claim requires approved substantiation.",
+      "message": "Absolute 100% claim requires approved substantiation.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "a high level of",
+      "status": "dismissed",
+      "draftId": "draft-20ee7ae0-9e6e-464b-89a0-3e0a9874a9f2",
+      "version": "v1",
+      "dismissReason": "Reviewed evidence."
+    },
+    {
+      "id": "f_r_1_13",
+      "ruleId": "R-1",
+      "category": "claim_substantiation",
+      "severity": "high",
+      "quoted_text": "100%",
+      "quote": "100%",
+      "start": 13,
+      "end": 17,
+      "characterStart": 13,
+      "characterEnd": 17,
+      "explanation": "Absolute 100% claim requires approved substantiation.",
+      "message": "Absolute 100% claim requires approved substantiation.",
+      "evidence_status": "not_enough_information",
+      "human_review_required": true,
+      "suggested_revision": "a high level of",
+      "status": "active",
+      "draftId": "draft-20ee7ae0-9e6e-464b-89a0-3e0a9874a9f2",
+      "version": "v2"
     }
   ],
   "decisions": [
@@ -1271,6 +1687,20 @@
       "decision": "Changes requested",
       "comment": "Please substantiate 2x claim before approval.",
       "version": "v3"
+    },
+    {
+      "draftId": "draft-2",
+      "decision": "Changes requested",
+      "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "timestamp": "2026-10-25T11:52:11.342Z"
+    },
+    {
+      "draftId": "draft-2",
+      "decision": "Changes requested",
+      "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+      "reviewer": "Sarah Chen (Reviewer)",
+      "timestamp": "2026-10-25T11:52:11.348Z"
     }
   ],
   "audit": [
@@ -2381,6 +2811,454 @@
       "from": "Local file",
       "to": "BrandGuard_PDF_Upload_Test.pdf (2.7 KB)",
       "comment": "Extracted 106 words (654 chars) from BrandGuard_PDF_Upload_Test.pdf",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_upload_1792867637651",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Uploaded document draft",
+      "from": "Local file",
+      "to": "BrandGuard_PDF_Upload_Test.pdf (2.7 KB)",
+      "comment": "Extracted 106 words (654 chars) from BrandGuard_PDF_Upload_Test.pdf",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_upload_1792867766407",
+      "draftId": "draft-1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Uploaded document draft",
+      "from": "Local file",
+      "to": "BrandGuard_PDF_Upload_Test_2.pdf (26.8 KB)",
+      "comment": "Extracted 95 words (571 chars) from BrandGuard_PDF_Upload_Test_2.pdf",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_573ee765-42e5-4a54-b1cb-aebc8263575c",
+      "draftId": "draft-b2e8b9a8-c77f-4731-bd52-2ec04e600858",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_1e347bf4-dbee-4456-80fd-901dcdfc6d86",
+      "draftId": "draft-b2e8b9a8-c77f-4731-bd52-2ec04e600858",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v1",
+      "to": "v2",
+      "comment": "Saved draft edits.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_e5d71f5f-0d50-47c1-9e15-083a783565a0",
+      "draftId": "draft-b3053ef3-eca9-43d4-9866-bfd2d3bfba9b",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_scan_0538ffb0-8331-4e4c-a813-e840e3aa5cae",
+      "draftId": "draft-b3053ef3-eca9-43d4-9866-bfd2d3bfba9b",
+      "actor": "System (Review Engine)",
+      "action": "Evaluated draft",
+      "from": "v1",
+      "to": "1 findings",
+      "comment": "1 findings validated; deterministic checks",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_adbe0119-5144-4a62-90ca-670ad6b2cfa1",
+      "draftId": "draft-b3053ef3-eca9-43d4-9866-bfd2d3bfba9b",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_r_1_13 bypassed on draft-b3053ef3-eca9-43d4-9866-bfd2d3bfba9b with justification: \"Evidence was reviewed for this campaign.\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_scan_4d834be4-ae2d-4c5a-9a4d-b229c34cc5c6",
+      "draftId": "draft-b3053ef3-eca9-43d4-9866-bfd2d3bfba9b",
+      "actor": "System (Review Engine)",
+      "action": "Evaluated draft",
+      "from": "v1",
+      "to": "1 findings",
+      "comment": "1 findings validated; deterministic checks",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_8c729a7f-7cfa-41d6-affb-abbc75853cdc",
+      "draftId": "draft-b3053ef3-eca9-43d4-9866-bfd2d3bfba9b",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Restored finding",
+      "from": "dismissed",
+      "to": "active",
+      "comment": "Restored finding f_r_1_13.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_e1c2d549-ff34-4aea-98a2-67546d47cda8",
+      "draftId": "draft-18955f30-d18f-422d-8a61-935cb0dffbec",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_scan_6c72dc34-0214-436f-a028-8829c18d83bb",
+      "draftId": "draft-18955f30-d18f-422d-8a61-935cb0dffbec",
+      "actor": "System (Review Engine)",
+      "action": "Evaluated draft",
+      "from": "v1",
+      "to": "1 findings",
+      "comment": "1 findings validated; deterministic checks",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_17004f6e-7864-4272-adb4-c6787525c785",
+      "draftId": "draft-18955f30-d18f-422d-8a61-935cb0dffbec",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_r_1_13 bypassed on draft-18955f30-d18f-422d-8a61-935cb0dffbec with justification: \"Reviewed evidence.\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_72a682fb-4bba-41c9-acb9-cce5ea5472a6",
+      "draftId": "draft-18955f30-d18f-422d-8a61-935cb0dffbec",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v1",
+      "to": "v2",
+      "comment": "Saved draft edits.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_scan_d55818f2-dabe-4f56-ae9e-72d729b4cd35",
+      "draftId": "draft-18955f30-d18f-422d-8a61-935cb0dffbec",
+      "actor": "System (Review Engine)",
+      "action": "Evaluated draft",
+      "from": "v2",
+      "to": "1 findings",
+      "comment": "1 findings validated; deterministic checks",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_6d90a97b-1e54-42ae-9a40-d2c8e956f038",
+      "draftId": "draft-d5f787cc-1649-4624-9a3b-b648e71f44ac",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_6c7c12e7-3f55-482a-aa7a-962ec383fa93",
+      "draftId": "draft-d5f787cc-1649-4624-9a3b-b648e71f44ac",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v1 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_9af251d3-c1bd-4243-9e07-d83405774637",
+      "draftId": "draft-9be4d1cb-dd9d-40f8-9567-5830585392a4",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_bc89e9ed-3ac9-4471-95cc-6b11cb74b018",
+      "draftId": "draft-a62a1e79-03bb-481e-a8d7-e7175ee473d1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_e13f47e7-a67d-4eda-8b54-8278d4d19cf0",
+      "draftId": "draft-a62a1e79-03bb-481e-a8d7-e7175ee473d1",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v1",
+      "to": "v2",
+      "comment": "Saved draft edits.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_09bb863f-1913-48d7-b4d6-fd9fca991df2",
+      "draftId": "draft-0ffeba79-aac8-48d8-811d-0d10e2b95776",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_ccf7f680-66cc-4dc0-92f2-34863e062fc0",
+      "draftId": "draft-0ffeba79-aac8-48d8-811d-0d10e2b95776",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v1 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_a2762a26-4541-49cd-9030-4c1de1cb5713",
+      "draftId": "draft-3ccc2063-2d04-413a-a68f-8d6b80cdc962",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit-1792929131345",
+      "draftId": "draft-2",
+      "action": "decision_recorded",
+      "actor": "Sarah Chen (Reviewer)",
+      "details": {
+        "draftId": "draft-2",
+        "decision": "Changes requested",
+        "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+        "reviewer": "Sarah Chen (Reviewer)",
+        "timestamp": "2026-10-25T11:52:11.342Z"
+      },
+      "timestamp": "2026-10-25T11:52:11.345Z"
+    },
+    {
+      "id": "audit-1792929131351",
+      "draftId": "draft-2",
+      "action": "decision_recorded",
+      "actor": "Sarah Chen (Reviewer)",
+      "details": {
+        "draftId": "draft-2",
+        "decision": "Changes requested",
+        "comment": "Please remove unsupported absolute claims (Best, #1, guaranteed).",
+        "reviewer": "Sarah Chen (Reviewer)",
+        "timestamp": "2026-10-25T11:52:11.348Z"
+      },
+      "timestamp": "2026-10-25T11:52:11.351Z"
+    },
+    {
+      "id": "audit_b707b0c1-267f-41c1-b5ca-6c88bad26e8f",
+      "draftId": "draft-ecafb3ff-e35c-468d-8616-8d21dc192fd3",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_7be87892-a1da-4061-8d11-f464a7c2ea73",
+      "draftId": "draft-ecafb3ff-e35c-468d-8616-8d21dc192fd3",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v1",
+      "to": "v2",
+      "comment": "Saved draft edits.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_14e5e548-35e7-4fcb-92d4-22ea75f15c83",
+      "draftId": "draft-07ae9766-98f9-4e92-95a3-966a3fed14c4",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_scan_b3bd253e-694a-42e1-9307-443866c2587d",
+      "draftId": "draft-07ae9766-98f9-4e92-95a3-966a3fed14c4",
+      "actor": "System (Review Engine)",
+      "action": "Evaluated draft",
+      "from": "v1",
+      "to": "1 findings",
+      "comment": "1 findings validated; deterministic checks",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_ac0abb62-7a11-4276-bd2e-94406cde0991",
+      "draftId": "draft-07ae9766-98f9-4e92-95a3-966a3fed14c4",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_r_1_13 bypassed on draft-07ae9766-98f9-4e92-95a3-966a3fed14c4 with justification: \"Evidence was reviewed for this campaign.\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_scan_f71be64a-9a18-4a81-916e-0e7337e333a4",
+      "draftId": "draft-07ae9766-98f9-4e92-95a3-966a3fed14c4",
+      "actor": "System (Review Engine)",
+      "action": "Evaluated draft",
+      "from": "v1",
+      "to": "1 findings",
+      "comment": "1 findings validated; deterministic checks",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_8e332a85-f551-464d-aaf4-06cfbef1f535",
+      "draftId": "draft-07ae9766-98f9-4e92-95a3-966a3fed14c4",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Restored finding",
+      "from": "dismissed",
+      "to": "active",
+      "comment": "Restored finding f_r_1_13.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_1529f549-3a13-4da5-9ed8-f33662bacdbd",
+      "draftId": "draft-20ee7ae0-9e6e-464b-89a0-3e0a9874a9f2",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_scan_5017c2c7-c5c3-40fc-9a5d-09880b74a3ea",
+      "draftId": "draft-20ee7ae0-9e6e-464b-89a0-3e0a9874a9f2",
+      "actor": "System (Review Engine)",
+      "action": "Evaluated draft",
+      "from": "v1",
+      "to": "1 findings",
+      "comment": "1 findings validated; deterministic checks",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_df86e96e-d2ee-438a-8972-34f289385397",
+      "draftId": "draft-20ee7ae0-9e6e-464b-89a0-3e0a9874a9f2",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Dismissed finding",
+      "from": "active",
+      "to": "dismissed",
+      "comment": "Finding f_r_1_13 bypassed on draft-20ee7ae0-9e6e-464b-89a0-3e0a9874a9f2 with justification: \"Reviewed evidence.\"",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_f746723a-8504-45b0-887a-a96ce378d917",
+      "draftId": "draft-20ee7ae0-9e6e-464b-89a0-3e0a9874a9f2",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v1",
+      "to": "v2",
+      "comment": "Saved draft edits.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_scan_625b12ed-a42a-4b8b-b7cd-1b2d42cafed1",
+      "draftId": "draft-20ee7ae0-9e6e-464b-89a0-3e0a9874a9f2",
+      "actor": "System (Review Engine)",
+      "action": "Evaluated draft",
+      "from": "v2",
+      "to": "1 findings",
+      "comment": "1 findings validated; deterministic checks",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_86a85066-6999-4427-ac9b-77d7a771f44f",
+      "draftId": "draft-9cb415d8-acb1-45c0-a602-fad50886ed59",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_de6f5e96-4ff4-45cc-a829-5d53cc3249c3",
+      "draftId": "draft-9cb415d8-acb1-45c0-a602-fad50886ed59",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v1 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_e49ae89c-9db8-4388-a73d-325e66859a9b",
+      "draftId": "draft-9beb5bfa-5b00-486c-961b-43c58e9a3307",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_3f71bb9b-62ea-4b5f-8a2f-e5288a1ae060",
+      "draftId": "draft-9b2ed44c-e4ab-4ce8-87ce-de9637ed5e4d",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_12192b71-03f3-4ffb-a1dc-1a2f0911ac28",
+      "draftId": "draft-9b2ed44c-e4ab-4ce8-87ce-de9637ed5e4d",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Saved revision",
+      "from": "v1",
+      "to": "v2",
+      "comment": "Saved draft edits.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_291ea185-786d-47ee-a471-1d6fbc4e2b8a",
+      "draftId": "draft-ca8677bc-cabd-4730-8e17-14a9101ead14",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_ea1d4e0a-0e5d-4d37-a8dd-3864c0ebbb4b",
+      "draftId": "draft-ca8677bc-cabd-4730-8e17-14a9101ead14",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Submitted draft",
+      "from": "In review",
+      "to": "In review",
+      "comment": "Submitted revision v1 for compliance approval.",
+      "time": "Just now"
+    },
+    {
+      "id": "audit_b1aa0a66-91c1-41e5-933e-cf4e699444bc",
+      "draftId": "draft-7c69c875-dd1d-42f6-9b53-43a46de3b4a0",
+      "actor": "Alex Rivera (Creator)",
+      "action": "Created draft",
+      "from": "Not created",
+      "to": "Draft v1",
+      "comment": "Created a new draft.",
       "time": "Just now"
     }
   ]
