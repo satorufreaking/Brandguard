@@ -2,7 +2,7 @@
  * BrandGuard - Central API Service Layer (Connected to Express Backend & MongoDB Atlas)
  */
 
-export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+export const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
 
 export const INITIAL_DRAFT_TEXT =
   "Our software is guaranteed to double every customer's productivity. Join users today. CLICK HERE to learn more.";
@@ -317,349 +317,166 @@ export function computeFindingsForDraft(draftText, rules = MOCK_RULES_DATA) {
 // CONNECTED BACKEND REST API CLIENT CALLS
 // ==========================================
 
+const DEMO_ROLE_STORAGE_KEY = 'brandguard-demo-role';
+
+export function getSelectedDemoRole() {
+  if (typeof localStorage === 'undefined') return 'creator';
+  const role = localStorage.getItem(DEMO_ROLE_STORAGE_KEY);
+  return ['creator', 'reviewer', 'admin'].includes(role) ? role : 'creator';
+}
+
+export function setSelectedDemoRole(role) {
+  if (!['creator', 'reviewer', 'admin'].includes(role)) {
+    throw new Error('Invalid demo role.');
+  }
+  if (typeof localStorage !== 'undefined') localStorage.setItem(DEMO_ROLE_STORAGE_KEY, role);
+}
+
+async function apiRequest(path, options = {}) {
+  const headers = new Headers(options.headers || {});
+  headers.set('x-brandguard-role', getSelectedDemoRole());
+  if (options.body && !(options.body instanceof FormData) && !headers.has('Content-Type')) {
+    headers.set('Content-Type', 'application/json');
+  }
+  const response = await fetch(`${API_BASE_URL}/api${path}`, { ...options, headers });
+  if (!response.ok) {
+    const payload = await response.json().catch(() => ({}));
+    const error = new Error(payload.error || `Request failed with HTTP ${response.status}.`);
+    error.status = response.status;
+    throw error;
+  }
+  return response.json();
+}
+
 // 1. Rules
 export async function fetchRulesAPI(category) {
-  try {
-    const url = category && category !== 'all'
-      ? `${API_BASE_URL}/api/rules?category=${encodeURIComponent(category)}`
-      : `${API_BASE_URL}/api/rules`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`Rules HTTP ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    console.warn('[API] Using local rules fallback:', err.message);
-    if (category && category !== 'all') {
-      return MOCK_RULES_DATA.filter((r) => r.category === category);
-    }
-    return MOCK_RULES_DATA;
-  }
+  const query = category && category !== 'all' ? `?category=${encodeURIComponent(category)}` : '';
+  return apiRequest(`/rules${query}`);
 }
 
 export async function updateRuleAPI(ruleId, updates) {
-  try {
-    const res = await fetch(`${API_BASE_URL}/api/rules/${ruleId}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updates),
-    });
-    if (!res.ok) throw new Error(`Update Rule HTTP ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    console.warn('[API] Fallback update rule:', err.message);
-    const rule = MOCK_RULES_DATA.find((r) => r.id === ruleId);
-    if (rule) Object.assign(rule, updates);
-    return rule;
-  }
+  return apiRequest(`/rules/${encodeURIComponent(ruleId)}`, {
+    method: 'PUT',
+    body: JSON.stringify(updates),
+  });
 }
 
 // 2. Facts
 export async function fetchFactsAPI() {
-  try {
-    const res = await fetch(`${API_BASE_URL}/api/facts`);
-    if (!res.ok) throw new Error(`Facts HTTP ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    console.warn('[API] Using local facts fallback:', err.message);
-    return MOCK_APPROVED_FACTS;
-  }
+  return apiRequest('/facts');
+}
+
+export async function createFactAPI(fact) {
+  return apiRequest('/facts', { method: 'POST', body: JSON.stringify(fact) });
+}
+
+export async function updateFactAPI(id, fact) {
+  return apiRequest(`/facts/${encodeURIComponent(id)}`, { method: 'PUT', body: JSON.stringify(fact) });
+}
+
+export async function deleteFactAPI(id) {
+  return apiRequest(`/facts/${encodeURIComponent(id)}`, { method: 'DELETE' });
 }
 
 // 3. Current Review Workspace State
 export async function fetchCurrentReviewAPI(draftId = 'draft-1') {
-  try {
-    const res = await fetch(`${API_BASE_URL}/api/reviews/current?draftId=${draftId}`);
-    if (!res.ok) throw new Error(`Current Review HTTP ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    console.warn('[API] Fallback current review:', err.message);
-    const matchedQueueItem = MOCK_QUEUE_ITEMS.find((q) => q.id === draftId) || MOCK_QUEUE_ITEMS[0];
-    const text = matchedQueueItem.draft || INITIAL_DRAFT_TEXT;
-    return {
-      draft: {
-        id: matchedQueueItem.id,
-        title: matchedQueueItem.title,
-        currentVersion: matchedQueueItem.version || 'v1',
-        currentText: text,
-        status: matchedQueueItem.status || 'In review',
-        revisions: [{ version: matchedQueueItem.version || 'v1', text, note: 'Initial revision' }],
-      },
-      findings: computeFindingsForDraft(text),
-      rules: MOCK_RULES_DATA,
-    };
-  }
+  return apiRequest(`/reviews/current?draftId=${encodeURIComponent(draftId)}`);
+}
+
+export async function createDraftAPI({ title, text = '' }) {
+  return apiRequest('/drafts', { method: 'POST', body: JSON.stringify({ title, text }) });
+}
+
+export async function saveDraftAPI({ draftId, title, text, expectedVersion }) {
+  return apiRequest(`/drafts/${encodeURIComponent(draftId)}`, {
+    method: 'PUT',
+    body: JSON.stringify({ title, text, expectedVersion }),
+  });
 }
 
 // 4. Run Review
 export async function runReviewAPI(draftText, options = {}) {
-  const { draftId = 'draft-1', version = 'v2', simulateError = false } = options;
+  const { draftId = 'draft-1', version, simulateError = false } = options;
 
   if (simulateError) {
     throw new Error('Review failed, retry');
   }
-
-  try {
-    const res = await fetch(`${API_BASE_URL}/api/reviews/run`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ draftId, text: draftText, version }),
-    });
-    if (!res.ok) throw new Error(`Review Run HTTP ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    console.warn('[API] Fallback review run:', err.message);
-    const findings = computeFindingsForDraft(draftText);
-    const summaryLine = findings.length > 0
-      ? `${findings.length} finding${findings.length === 1 ? '' : 's'} validated across active brand rules`
-      : '0 violations flagged across active brand rules (all rules passed)';
-    return {
-      draftText,
-      findings,
-      meta: {
-        validatedCount: findings.length,
-        rejectedCount: 0,
-        summaryLine,
-      },
-    };
-  }
+  return apiRequest('/reviews/run', {
+    method: 'POST',
+    body: JSON.stringify({ draftId, text: draftText, version }),
+  });
 }
 
 // 5. Accept Finding Fix
-export async function acceptFindingAPI({ draftId = 'draft-1', findingId, ruleId, replacement, newText, nextVersion }) {
-  try {
-    const res = await fetch(`${API_BASE_URL}/api/reviews/accept`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ draftId, findingId, ruleId, replacement, newText, nextVersion }),
-    });
-    if (!res.ok) throw new Error(`Accept HTTP ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    console.warn('[API] Fallback accept fix:', err.message);
-    return {
-      draft: { currentText: newText, currentVersion: nextVersion || 'v3' },
-      findings: computeFindingsForDraft(newText),
-      version: nextVersion || 'v3',
-    };
-  }
+export async function acceptFindingAPI({ draftId = 'draft-1', findingId, expectedVersion, newText }) {
+  return apiRequest('/reviews/accept', {
+    method: 'POST',
+    body: JSON.stringify({ draftId, findingId, expectedVersion, newText }),
+  });
 }
 
 // 6. Dismiss Finding
 export async function dismissFindingAPI({ draftId = 'draft-1', findingId, reason }) {
-  const res = await fetch(`${API_BASE_URL}/api/reviews/dismiss`, {
+  return apiRequest('/reviews/dismiss', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ draftId, findingId, reason }),
   });
-  if (!res.ok) {
-    const errData = await res.json().catch(() => ({}));
-    throw new Error(errData.error || `Dismiss failed with HTTP ${res.status}`);
-  }
-  return await res.json();
+}
+
+export async function restoreFindingAPI({ draftId = 'draft-1', findingId }) {
+  return apiRequest('/reviews/restore', {
+    method: 'POST',
+    body: JSON.stringify({ draftId, findingId }),
+  });
 }
 
 // 7. Submit Draft
-export async function submitDraftAPI({ draftId = 'draft-1', actor = 'Alex Rivera (Creator)' }) {
-  const res = await fetch(`${API_BASE_URL}/api/reviews/submit`, {
+export async function submitDraftAPI({ draftId = 'draft-1' }) {
+  return apiRequest('/reviews/submit', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ draftId, actor }),
+    body: JSON.stringify({ draftId }),
   });
-  if (!res.ok) {
-    const errData = await res.json().catch(() => ({}));
-    throw new Error(errData.error || `Submit failed with HTTP ${res.status}`);
-  }
-  return await res.json();
 }
 
 // 8. Record Reviewer Decision
-export async function recordDecisionAPI({ draftId = 'draft-1', decision, comment, reviewer = 'Sarah Chen (Reviewer)' }) {
-  const res = await fetch(`${API_BASE_URL}/api/reviews/decision`, {
+export async function recordDecisionAPI({ draftId = 'draft-1', decision, comment }) {
+  return apiRequest('/reviews/decision', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ draftId, decision, comment, reviewer }),
+    body: JSON.stringify({ draftId, decision, comment }),
   });
-  if (!res.ok) {
-    const errData = await res.json().catch(() => ({}));
-    throw new Error(errData.error || `Decision failed with HTTP ${res.status}`);
-  }
-  return await res.json();
 }
 
 // 9. Queue
 export async function fetchQueueAPI() {
-  try {
-    const res = await fetch(`${API_BASE_URL}/api/queue`);
-    if (!res.ok) throw new Error(`Queue HTTP ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    console.warn('[API] Fallback fetch queue:', err.message);
-    return MOCK_QUEUE_ITEMS;
-  }
+  return apiRequest('/queue');
 }
 
 // 10. Audit Trail
 export async function fetchAuditAPI() {
-  try {
-    const res = await fetch(`${API_BASE_URL}/api/audit`);
-    if (!res.ok) throw new Error(`Audit HTTP ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    console.warn('[API] Fallback fetch audit:', err.message);
-    return MOCK_AUDIT_LOGS;
-  }
+  return apiRequest('/audit');
 }
 
 // 11. Document Ingestion & Text Extraction (PDF/DOCX/TXT)
 export async function uploadDocumentAPI(file, options = {}) {
-  try {
-    const formData = new FormData();
-    formData.append('file', file);
-    if (options.runReview !== false) formData.append('runReview', 'true');
-    if (options.draftId) formData.append('draftId', options.draftId);
-    if (options.actor) formData.append('actor', options.actor);
-
-    const res = await fetch(`${API_BASE_URL}/api/documents/extract`, {
-      method: 'POST',
-      body: formData,
-    });
-
-    if (res.ok) {
-      return await res.json();
-    }
-    const errData = await res.json().catch(() => ({}));
-    throw new Error(errData.error || `Upload failed with HTTP ${res.status}`);
-  } catch (err) {
-    console.warn('[API] Backend document extraction unavailable, attempting client-side extraction:', err.message);
-    const filename = file?.name || 'uploaded_document';
-    const ext = filename.slice(filename.lastIndexOf('.')).toLowerCase();
-
-    let text = '';
-    if (ext === '.txt' || ext === '.md') {
-      text = await file.text();
-    } else if (ext === '.pdf') {
-      try {
-        const buffer = await file.arrayBuffer();
-        const bytes = new Uint8Array(buffer);
-        let latin = '';
-        for (let i = 0; i < bytes.length; i++) latin += String.fromCharCode(bytes[i]);
-        const chunks = [];
-        const regex = /\(([^)]+)\)\s*Tj/g;
-        let match;
-        while ((match = regex.exec(latin)) !== null) {
-          chunks.push(match[1]);
-        }
-        if (chunks.length > 0) {
-          text = chunks.join(' ');
-        }
-      } catch (_) {}
-    }
-
-    if (text && text.trim()) {
-      const normalized = text.trim();
-      const words = normalized.split(/\s+/).filter(Boolean);
-      const findings = options.runReview !== false ? computeFindingsForDraft(normalized) : null;
-      return {
-        success: true,
-        text: normalized,
-        filename,
-        charCount: normalized.length,
-        wordCount: words.length,
-        findings,
-        summaryLine: findings ? `${findings.length} findings validated across active brand rules` : null,
-      };
-    }
-
-    throw err;
-  }
+  const formData = new FormData();
+  formData.append('file', file);
+  if (options.runReview !== false) formData.append('runReview', 'true');
+  if (options.draftId) formData.append('draftId', options.draftId);
+  return apiRequest('/documents/extract', { method: 'POST', body: formData });
 }
 
 // 12. Governance Analytics
 export async function fetchGovernanceAnalyticsAPI() {
-  try {
-    const res = await fetch(`${API_BASE_URL}/api/analytics/governance`);
-    if (!res.ok) throw new Error(`Analytics HTTP ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    console.warn('[API] Fallback fetch governance analytics:', err.message);
-    // Dynamic mock fallback computed from mock data
-    const activeRules = MOCK_RULES_DATA.filter((r) => r.active !== false);
-    return {
-      totalDrafts: MOCK_QUEUE_ITEMS.length,
-      totalViolations: 8,
-      activeRulesCount: activeRules.length,
-      complianceRate: 67,
-      severityBreakdown: { high: 4, medium: 2, low: 2 },
-      categoryBreakdown: { claim_substantiation: 4, terminology: 2, accessibility: 2 },
-      mostViolatedRules: [
-        {
-          ruleId: 'R-1',
-          code: 'R-1',
-          text: 'No absolute claims without approved source',
-          summary: 'Prohibits unqualified absolute claims',
-          severity: 'high',
-          category: 'claim_substantiation',
-          count: 4,
-          percentage: 50,
-        },
-        {
-          ruleId: 'R-7',
-          code: 'R-7',
-          text: "Use 'customers', not 'users'",
-          summary: 'Audience addressed as customers',
-          severity: 'medium',
-          category: 'terminology',
-          count: 2,
-          percentage: 25,
-        },
-        {
-          ruleId: 'A-2',
-          code: 'A-2',
-          text: "No 'click here' link text",
-          summary: 'WCAG link purpose requirement',
-          severity: 'low',
-          category: 'accessibility',
-          count: 2,
-          percentage: 25,
-        },
-      ],
-      recentAudits: MOCK_AUDIT_LOGS.slice(0, 5),
-      timestamp: new Date().toISOString(),
-    };
-  }
+  return apiRequest('/analytics/governance');
 }
 
 // 13. LLM Provider Status
 export async function fetchLLMStatusAPI() {
-  try {
-    const res = await fetch(`${API_BASE_URL}/api/llm/status`);
-    if (!res.ok) throw new Error(`LLM Status HTTP ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    return {
-      configured: false,
-      provider: null,
-      model: null,
-      mode: 'Deterministic Mode (Offline fallback)',
-    };
-  }
+  return apiRequest('/llm/status');
 }
 
 // 14. Auth & Role Switcher
 export async function fetchCurrentUserAPI(role = 'creator') {
-  try {
-    const res = await fetch(`${API_BASE_URL}/api/auth/me?role=${encodeURIComponent(role)}`);
-    if (!res.ok) throw new Error(`Auth HTTP ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    return {
-      user: {
-        id: `user-${role}`,
-        name: role === 'reviewer' ? 'Sarah Chen' : 'Alex Rivera',
-        role,
-        permissions: role === 'reviewer' ? ['review:approve', 'review:reject'] : ['draft:submit', 'document:upload'],
-      },
-      authenticated: true,
-      authMode: 'demo_session',
-    };
-  }
+  setSelectedDemoRole(role);
+  return apiRequest('/auth/me');
 }

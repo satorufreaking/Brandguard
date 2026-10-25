@@ -12,6 +12,7 @@ export default function DraftPanel({
   onFileUpload,
   isUploading = false,
   uploadedFileName = null,
+  readOnly = false,
 }) {
   const [isDragging, setIsDragging] = useState(false);
 
@@ -28,7 +29,7 @@ export default function DraftPanel({
   const handleDrop = (e) => {
     e.preventDefault();
     setIsDragging(false);
-    if (e.dataTransfer?.files && e.dataTransfer.files.length > 0) {
+    if (!readOnly && e.dataTransfer?.files && e.dataTransfer.files.length > 0) {
       const file = e.dataTransfer.files[0];
       if (onFileUpload) onFileUpload(file);
     }
@@ -128,7 +129,7 @@ export default function DraftPanel({
     >
       {/* Draft Panel Toolbar */}
       <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 border-b border-slate-200 bg-slate-50 flex-shrink-0">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 min-w-0">
           <FileText className="w-4 h-4 text-slate-500" aria-hidden="true" />
           <h2 className="text-sm font-semibold text-slate-900">
             {isReviewMode ? 'Reviewed Draft (Read-only)' : 'Editable Draft Input'}
@@ -144,7 +145,7 @@ export default function DraftPanel({
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        {!readOnly && <div className="flex flex-wrap items-center gap-2">
           {/* Upload Button */}
           <label
             className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 cursor-pointer transition focus-within:ring-2 focus-within:ring-blue-600 ${
@@ -179,7 +180,7 @@ export default function DraftPanel({
               </>
             )}
           </button>
-        </div>
+        </div>}
       </div>
 
       {/* Draft Content: Before review (Textarea) vs After review (Highlighted Spans) */}
@@ -193,6 +194,7 @@ export default function DraftPanel({
               id="draft-editor-textarea"
               value={draftText}
               onChange={(e) => onDraftChange(e.target.value)}
+              readOnly={readOnly}
               placeholder="Paste or write draft copy here before review..."
               className="w-full flex-1 min-h-[300px] p-4 text-sm font-normal text-slate-900 bg-white border border-slate-300 rounded focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none resize-none leading-relaxed"
             />
@@ -255,7 +257,7 @@ export default function DraftPanel({
       </div>
 
       {/* Footer helper */}
-      <div className="px-4 py-2 border-t border-slate-200 bg-slate-50 text-xs text-slate-500 flex items-center justify-between">
+      <div className="px-4 py-2 border-t border-slate-200 bg-slate-50 text-xs text-slate-500 flex flex-wrap items-center justify-between gap-2">
         <span>Click any highlighted phrase to scroll to and pulse its finding card.</span>
         <span className="font-mono text-[11px] text-slate-400">Inclusive [start], Exclusive [end]</span>
       </div>

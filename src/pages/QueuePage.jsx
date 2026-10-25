@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MOCK_QUEUE_ITEMS, fetchQueueAPI } from '../api';
+import { fetchQueueAPI } from '../api';
 import StatusPill from '../components/StatusPill';
 import { Inbox, AlertCircle, ArrowUpRight, Clock, User, RotateCcw } from 'lucide-react';
 
 export default function QueuePage() {
   const navigate = useNavigate();
-  const [queueItems, setQueueItems] = useState(MOCK_QUEUE_ITEMS);
-  const [isLoading, setIsLoading] = useState(false);
+  const [queueItems, setQueueItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     async function loadQueue() {
@@ -15,8 +16,9 @@ export default function QueuePage() {
       try {
         const data = await fetchQueueAPI();
         if (Array.isArray(data)) setQueueItems(data);
+        setError('');
       } catch (err) {
-        console.warn('Queue fetch error:', err.message);
+        setError(`Unable to load the review queue: ${err.message}`);
       } finally {
         setIsLoading(false);
       }
@@ -39,7 +41,7 @@ export default function QueuePage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-6">
+    <div className="max-w-7xl mx-auto p-3 sm:p-6 space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div>
@@ -53,8 +55,10 @@ export default function QueuePage() {
         </span>
       </div>
 
+      {error && <p role="alert" className="p-3 rounded border border-rose-200 bg-rose-50 text-xs text-rose-800">{error}</p>}
+
       {/* Queue Cards / Table */}
-      <div className="bg-white rounded border border-slate-200 overflow-hidden">
+      <div className="bg-white rounded border border-slate-200 overflow-x-auto">
         <table className="w-full text-left border-collapse text-xs">
           <thead>
             <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 font-semibold uppercase tracking-wider text-[11px]">
@@ -67,6 +71,8 @@ export default function QueuePage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
+            {isLoading && <tr><td colSpan={6} className="p-8 text-center text-slate-500">Loading review queue...</td></tr>}
+            {!isLoading && queueItems.length === 0 && <tr><td colSpan={6} className="p-8 text-center text-slate-500">{error ? 'Queue unavailable.' : 'No drafts are awaiting review.'}</td></tr>}
             {queueItems.map((item) => (
               <tr
                 key={item.id}
@@ -123,7 +129,7 @@ export default function QueuePage() {
       <div className="p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-600 flex items-center gap-2">
         <Inbox className="w-4 h-4 text-slate-500" />
         <span>
-          Clicking any queue row opens the Review workspace in <strong>Reviewer mode</strong> with decision controls ([Approve], [Request changes], [Reject]).
+          Clicking any queue row opens the saved draft in <strong>Reviewer mode</strong>. Decision controls are available only while its status is In review.
         </span>
       </div>
     </div>

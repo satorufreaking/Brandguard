@@ -1,14 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MOCK_RULES_DATA, MOCK_APPROVED_FACTS, fetchRulesAPI, updateRuleAPI, fetchFactsAPI } from '../api';
+import {
+  fetchRulesAPI, updateRuleAPI, fetchFactsAPI, createFactAPI, updateFactAPI,
+  deleteFactAPI, getSelectedDemoRole,
+} from '../api';
 import RuleDrawer from '../components/RuleDrawer';
-import { BookOpen, CheckCircle, Database, Filter, Eye, AlertCircle, AlertTriangle, Info } from 'lucide-react';
+import { BookOpen, CheckCircle, Database, Filter, AlertCircle, AlertTriangle, Info, Plus, Pencil, Trash2 } from 'lucide-react';
 
 export default function RulesPage() {
   const [activeTab, setActiveTab] = useState('rules'); // 'rules' | 'facts'
   const [categoryFilter, setCategoryFilter] = useState('all');
-  const [rules, setRules] = useState(MOCK_RULES_DATA);
-  const [facts, setFacts] = useState(MOCK_APPROVED_FACTS);
-  const [isLoading, setIsLoading] = useState(false);
+  const [rules, setRules] = useState([]);
+  const [facts, setFacts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [role] = useState(getSelectedDemoRole);
+  const [factForm, setFactForm] = useState(null);
+  const [savingFact, setSavingFact] = useState(false);
   const [activeRuleId, setActiveRuleId] = useState(null);
   const triggerRefs = useRef({});
 
@@ -19,8 +26,9 @@ export default function RulesPage() {
       try {
         const data = await fetchRulesAPI(categoryFilter);
         if (Array.isArray(data)) setRules(data);
+        setError('');
       } catch (err) {
-        console.warn('Failed to load rules from API:', err.message);
+        setError(`Unable to load rules from the backend: ${err.message}`);
       } finally {
         setIsLoading(false);
       }
@@ -28,31 +36,60 @@ export default function RulesPage() {
     loadRules();
   }, [categoryFilter]);
 
-  // Load facts from backend
+  const loadFacts = async () => {
+    try {
+      const data = await fetchFactsAPI();
+      if (Array.isArray(data)) setFacts(data);
+      setError('');
+    } catch (err) {
+      setError(`Unable to load approved facts from the backend: ${err.message}`);
+    }
+  };
+
   useEffect(() => {
-    async function loadFacts() {
-      try {
-        const data = await fetchFactsAPI();
-        if (Array.isArray(data)) setFacts(data);
-      } catch (err) {
-        console.warn('Failed to load facts from API:', err.message);
-      }
-    }
-    if (activeTab === 'facts') {
-      loadFacts();
-    }
+    if (activeTab === 'facts') loadFacts();
   }, [activeTab]);
 
   const handleToggleRule = async (id) => {
     const current = rules.find((r) => r.id === id);
     const newActive = current ? !current.active : false;
-    setRules((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, active: newActive } : r))
-    );
+    if (role !== 'admin') return;
+    setError('');
     try {
-      await updateRuleAPI(id, { active: newActive });
+      const updated = await updateRuleAPI(id, { active: newActive });
+      setRules((prev) => prev.map((rule) => rule.id === id ? updated : rule));
     } catch (err) {
-      console.warn('Failed to update rule on backend:', err.message);
+      setError(`Rule update failed; the saved status was not changed. ${err.message}`);
+    }
+  };
+
+  const handleSaveFact = async (event) => {
+    event.preventDefault();
+    setSavingFact(true);
+    setError('');
+    try {
+      if (factForm.id) {
+        await updateFactAPI(factForm.id, factForm);
+      } else {
+        await createFactAPI(factForm);
+      }
+      setFactForm(null);
+      await loadFacts();
+    } catch (err) {
+      setError(`Unable to save approved fact: ${err.message}`);
+    } finally {
+      setSavingFact(false);
+    }
+  };
+
+  const handleDeleteFact = async (fact) => {
+    if (!window.confirm(`Delete the approved fact "${fact.subject}"?`)) return;
+    setError('');
+    try {
+      await deleteFactAPI(fact.id);
+      setFacts((prev) => prev.filter((item) => item.id !== fact.id));
+    } catch (err) {
+      setError(`Unable to delete approved fact: ${err.message}`);
     }
   };
 
@@ -64,7 +101,7 @@ export default function RulesPage() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-6">
+    <div className="max-w-7xl mx-auto p-3 sm:p-6 space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div>
@@ -100,14 +137,21 @@ export default function RulesPage() {
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            Approved Facts ({MOCK_APPROVED_FACTS.length})
+            Approved Facts ({facts.length})
           </button>
         </div>
       </div>
 
+      {error && <div role="alert" className="max-w-7xl mx-auto px-3 sm:px-6 -mt-3">
+        <p className="p-3 rounded border border-rose-200 bg-rose-50 text-xs text-rose-800">{error}</p>
+      </div>}
+
       {/* Tab 1: Rules Table */}
       {activeTab === 'rules' && (
         <div className="space-y-4">
+          {role !== 'admin' && <p className="text-xs text-slate-600 bg-slate-100 border border-slate-200 rounded p-3">
+            Rule changes are available only in the selectable demo Admin role. This role is not secure authentication.
+          </p>}
           {/* Category Filter */}
           <div className="flex items-center justify-between gap-4 bg-white p-3 rounded border border-slate-200">
             <div className="flex items-center gap-2">
@@ -148,6 +192,7 @@ export default function RulesPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
+                {!isLoading && filteredRules.length === 0 && <tr><td colSpan={6} className="p-6 text-center text-xs text-slate-500">No brand rules are configured.</td></tr>}
                 {filteredRules.map((rule) => {
                   const isHigh = rule.severity === 'high';
                   const isMed = rule.severity === 'medium';
@@ -184,6 +229,7 @@ export default function RulesPage() {
                             type="checkbox"
                             checked={rule.active}
                             onChange={() => handleToggleRule(rule.id)}
+                            disabled={role !== 'admin'}
                             className="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500"
                             aria-label={`Toggle active status for rule ${rule.id}`}
                           />
@@ -213,6 +259,35 @@ export default function RulesPage() {
 
       {/* Tab 2: Approved Facts Table */}
       {activeTab === 'facts' && (
+        <div className="space-y-3">
+        {role === 'admin' ? (
+          <button type="button" onClick={() => setFactForm({ subject: '', value: '', source: '', validUntil: '' })}
+            className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded bg-blue-600 text-white hover:bg-blue-700">
+            <Plus className="w-3.5 h-3.5" /> Add approved fact
+          </button>
+        ) : <p className="text-xs text-slate-600 bg-slate-100 border border-slate-200 rounded p-3">
+          Approved facts are read-only unless the selectable demo Admin role is active. This role is not secure authentication.
+        </p>}
+        {factForm && (
+          <form onSubmit={handleSaveFact} className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-white rounded border border-slate-200">
+            <label className="text-xs font-semibold text-slate-700">Subject
+              <input required maxLength={120} value={factForm.subject} onChange={(e) => setFactForm({ ...factForm, subject: e.target.value })} className="mt-1 w-full border border-slate-300 rounded px-2 py-1.5" />
+            </label>
+            <label className="text-xs font-semibold text-slate-700">Valid until
+              <input required type="date" value={factForm.validUntil} onChange={(e) => setFactForm({ ...factForm, validUntil: e.target.value })} className="mt-1 w-full border border-slate-300 rounded px-2 py-1.5" />
+            </label>
+            <label className="text-xs font-semibold text-slate-700 sm:col-span-2">Verified fact value
+              <textarea required maxLength={1000} value={factForm.value} onChange={(e) => setFactForm({ ...factForm, value: e.target.value })} className="mt-1 w-full border border-slate-300 rounded px-2 py-1.5" rows={2} />
+            </label>
+            <label className="text-xs font-semibold text-slate-700 sm:col-span-2">Evidence/source reference
+              <input required maxLength={300} value={factForm.source} onChange={(e) => setFactForm({ ...factForm, source: e.target.value })} className="mt-1 w-full border border-slate-300 rounded px-2 py-1.5" />
+            </label>
+            <div className="sm:col-span-2 flex justify-end gap-2">
+              <button type="button" onClick={() => setFactForm(null)} className="px-3 py-1.5 text-xs border rounded">Cancel</button>
+              <button type="submit" disabled={savingFact} className="px-3 py-1.5 text-xs rounded bg-blue-600 text-white disabled:opacity-50">{savingFact ? 'Saving...' : 'Save fact'}</button>
+            </div>
+          </form>
+        )}
         <div className="bg-white rounded border border-slate-200 overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
@@ -221,6 +296,7 @@ export default function RulesPage() {
                 <th className="py-3 px-4">Verified Fact Value</th>
                 <th className="py-3 px-4">Source Reference</th>
                 <th className="py-3 px-4">Valid Until</th>
+                {role === 'admin' && <th className="py-3 px-4 text-right">Actions</th>}
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -232,16 +308,23 @@ export default function RulesPage() {
                   </td>
                   <td className="py-3 px-4 text-slate-600">{fact.source}</td>
                   <td className="py-3 px-4 font-mono text-slate-500">{fact.validUntil}</td>
+                  {role === 'admin' && <td className="py-3 px-4 text-right whitespace-nowrap">
+                    <button type="button" onClick={() => setFactForm({ ...fact })} aria-label={`Edit ${fact.subject}`} className="p-1.5 text-blue-700 hover:bg-blue-50 rounded"><Pencil className="w-4 h-4" /></button>
+                    <button type="button" onClick={() => handleDeleteFact(fact)} aria-label={`Delete ${fact.subject}`} className="p-1.5 text-rose-700 hover:bg-rose-50 rounded"><Trash2 className="w-4 h-4" /></button>
+                  </td>}
                 </tr>
               ))}
+              {!facts.length && <tr><td colSpan={role === 'admin' ? 5 : 4} className="p-6 text-center text-xs text-slate-500">No approved facts are configured.</td></tr>}
             </tbody>
           </table>
+        </div>
         </div>
       )}
 
       {/* Rule Drawer */}
       <RuleDrawer
         ruleId={activeRuleId}
+        rule={rules.find((item) => item.id === activeRuleId)}
         isOpen={Boolean(activeRuleId)}
         onClose={() => setActiveRuleId(null)}
         triggerRef={{ current: triggerRefs.current[activeRuleId] }}

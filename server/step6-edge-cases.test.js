@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
+import { randomUUID } from 'crypto';
 import request from 'supertest';
 import app from './index.js';
 import { initDatabase, db } from './db.js';
@@ -11,7 +12,7 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
 
   // --- WORKFLOW SEQUENCE ---
   describe('Complete End-to-End Workflow Sequence', () => {
-    const workflowDraftId = 'draft-step6-workflow';
+    const workflowDraftId = `draft-step6-workflow-${randomUUID()}`;
     const initialText =
       "Our software is guaranteed to double every customer's productivity. Join users today. CLICK HERE to learn more.";
 
@@ -19,6 +20,7 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
       // Toggle R-4 inactive
       const disableRes = await request(app)
         .put('/api/rules/R-4')
+        .set('x-brandguard-role', 'admin')
         .send({ active: false });
       expect(disableRes.status).toBe(200);
       expect(disableRes.body.active).toBe(false);
@@ -31,6 +33,7 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
       // Re-enable R-4
       const enableRes = await request(app)
         .put('/api/rules/R-4')
+        .set('x-brandguard-role', 'admin')
         .send({ active: true });
       expect(enableRes.status).toBe(200);
       expect(enableRes.body.active).toBe(true);
@@ -49,6 +52,7 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
 
       const res = await request(app)
         .post('/api/reviews/run')
+        .set('x-brandguard-role', 'creator')
         .send({ draftId: workflowDraftId, text: initialText, version: 'v1' });
 
       expect(res.status).toBe(200);
@@ -63,9 +67,10 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
     it('Step 3: Unresolved high-severity finding blocks submission to In Review', async () => {
       const res = await request(app)
         .post('/api/reviews/submit')
-        .send({ draftId: workflowDraftId, actor: 'Alex Rivera (Creator)' });
+        .set('x-brandguard-role', 'creator')
+        .send({ draftId: workflowDraftId });
 
-      expect(res.status).toBe(400);
+      expect(res.status, JSON.stringify(res.body)).toBe(400);
       expect(res.body.error).toContain('Submission blocked');
     });
 
@@ -75,13 +80,12 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
 
       const acceptRes = await request(app)
         .post('/api/reviews/accept')
+        .set('x-brandguard-role', 'creator')
         .send({
           draftId: workflowDraftId,
-          findingId: 'f_r7_73',
-          ruleId: 'R-7',
-          replacement: 'customers',
+          findingId: 'f_r_7_73',
+          expectedVersion: 'v1',
           newText: textV2,
-          nextVersion: 'v2',
         });
 
       expect(acceptRes.status).toBe(200);
@@ -97,9 +101,10 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
     it('Step 5: Dismiss high-severity finding R-1 with required justification reason', async () => {
       const dismissRes = await request(app)
         .post('/api/reviews/dismiss')
+        .set('x-brandguard-role', 'creator')
         .send({
           draftId: workflowDraftId,
-          findingId: 'f_r1_16',
+          findingId: 'f_r_1_16',
           reason: 'Legal and Risk Committee pre-approved this specific productivity guarantee for pilot customers.',
         });
 
@@ -111,7 +116,8 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
     it('Step 6: Request approval (submit draft) successfully after high-severity resolution', async () => {
       const submitRes = await request(app)
         .post('/api/reviews/submit')
-        .send({ draftId: workflowDraftId, actor: 'Alex Rivera (Creator)' });
+        .set('x-brandguard-role', 'creator')
+        .send({ draftId: workflowDraftId });
 
       expect(submitRes.status).toBe(200);
       expect(submitRes.body.success).toBe(true);
@@ -121,6 +127,7 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
     it('Step 7: Reviewer evaluates and records decision (Approved) with mandatory comment', async () => {
       const decideRes = await request(app)
         .post('/api/reviews/decision')
+        .set('x-brandguard-role', 'reviewer')
         .send({
           draftId: workflowDraftId,
           decision: 'Approved',
@@ -153,6 +160,7 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
     it('Rejects non-existent Rule ID with 404', async () => {
       const res = await request(app)
         .put('/api/rules/NON-EXISTENT-RULE-999')
+        .set('x-brandguard-role', 'admin')
         .send({ active: false });
       expect(res.status).toBe(404);
       expect(res.body.error).toContain('not found');
@@ -161,6 +169,7 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
     it('Rejects review run with invalid/missing text payload', async () => {
       const res = await request(app)
         .post('/api/reviews/run')
+        .set('x-brandguard-role', 'creator')
         .send({ draftId: 'draft-1', text: 12345 });
       expect(res.status).toBe(400);
       expect(res.body.error).toContain('Draft text must be a string');
@@ -169,12 +178,14 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
     it('Rejects finding dismissal with empty or whitespace-only reason', async () => {
       const whitespaceRes = await request(app)
         .post('/api/reviews/dismiss')
+        .set('x-brandguard-role', 'creator')
         .send({ draftId: 'draft-1', findingId: 'f_test', reason: '    ' });
       expect(whitespaceRes.status).toBe(400);
       expect(whitespaceRes.body.error).toContain('Mandatory justification reason is required');
 
       const nullRes = await request(app)
         .post('/api/reviews/dismiss')
+        .set('x-brandguard-role', 'creator')
         .send({ draftId: 'draft-1', findingId: 'f_test', reason: null });
       expect(nullRes.status).toBe(400);
     });
@@ -182,6 +193,7 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
     it('Rejects reviewer decision with invalid decision enum', async () => {
       const res = await request(app)
         .post('/api/reviews/decision')
+        .set('x-brandguard-role', 'reviewer')
         .send({
           draftId: 'draft-1',
           decision: 'MaybeApproved',
@@ -194,6 +206,7 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
     it('Rejects reviewer decision without mandatory comment', async () => {
       const res = await request(app)
         .post('/api/reviews/decision')
+        .set('x-brandguard-role', 'reviewer')
         .send({
           draftId: 'draft-1',
           decision: 'Rejected',
@@ -206,6 +219,7 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
     it('Rejects new fact creation with missing required fields', async () => {
       const res = await request(app)
         .post('/api/facts')
+        .set('x-brandguard-role', 'admin')
         .send({ subject: 'Active Users' }); // Missing value, source, validUntil
       expect(res.status).toBe(400);
       expect(res.body.error).toContain('All fact fields');
@@ -214,6 +228,7 @@ describe('Step 6: End-to-End Workflow & Negative Edge Case Verification', () => 
     it('Handles non-existent draft gracefully in submit endpoint', async () => {
       const res = await request(app)
         .post('/api/reviews/submit')
+        .set('x-brandguard-role', 'creator')
         .send({ draftId: 'non-existent-draft-id-xyz' });
       expect(res.status).toBe(404);
       expect(res.body.error).toContain('Draft not found');

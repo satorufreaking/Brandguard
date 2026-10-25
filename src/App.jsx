@@ -9,16 +9,16 @@ import { Shield } from 'lucide-react';
 
 function TopNav() {
   const navLinkClass = ({ isActive }) =>
-    `px-4 py-2.5 text-xs font-semibold transition border-b-2 flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none ${
+    `px-2 sm:px-4 py-2.5 text-xs font-semibold transition border-b-2 flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none ${
       isActive
         ? 'border-blue-600 text-blue-700 bg-blue-50/40'
         : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50'
     }`;
 
   return (
-    <nav className="bg-white border-b border-slate-200 px-6 sticky top-0 z-40" aria-label="Main Navigation">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-8">
+    <nav className="bg-white border-b border-slate-200 px-2 sm:px-6 sticky top-0 z-40" aria-label="Main Navigation">
+      <div className="max-w-7xl mx-auto flex min-w-0 items-center justify-between gap-2">
+        <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-8">
           {/* Logo */}
           <div className="flex items-center gap-2 py-3">
             <div className="w-7 h-7 rounded bg-blue-600 flex items-center justify-center text-white font-bold">
@@ -28,7 +28,7 @@ function TopNav() {
           </div>
 
           {/* Nav Links: Review | Queue | Rules | Audit | Analytics */}
-          <div className="flex items-center gap-1">
+          <div className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto">
             <NavLink to="/review" className={navLinkClass}>
               Review
             </NavLink>

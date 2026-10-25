@@ -9,11 +9,17 @@ export const ALLOWED_EXTENSIONS = ['.pdf', '.docx', '.txt', '.md'];
 export const ALLOWED_MIME_TYPES = [
   'application/pdf',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-  'application/msword',
   'text/plain',
   'text/markdown',
-  'application/octet-stream', // often sent by some browsers for unknown binary types
+  'application/octet-stream',
 ];
+
+const MIME_TYPES_BY_EXTENSION = {
+  '.pdf': ['application/pdf'],
+  '.docx': ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/octet-stream'],
+  '.txt': ['text/plain', 'application/octet-stream'],
+  '.md': ['text/markdown', 'text/plain', 'application/octet-stream'],
+};
 
 /**
  * Extracts plain text from a PDF buffer.
@@ -89,6 +95,17 @@ export async function parseDocumentBuffer(buffer, originalName = '', mimeType = 
     throw new Error(
       `Unsupported file format "${ext || 'unknown'}". Allowed formats: ${ALLOWED_EXTENSIONS.join(', ')}.`
     );
+  }
+
+  const normalizedMimeType = mimeType.toLowerCase().split(';')[0].trim();
+  if (normalizedMimeType && !MIME_TYPES_BY_EXTENSION[ext].includes(normalizedMimeType)) {
+    throw new Error(`File type "${normalizedMimeType}" does not match the "${ext}" extension.`);
+  }
+  if (ext === '.pdf' && !buffer.subarray(0, 1024).includes(Buffer.from('%PDF'))) {
+    throw new Error('The uploaded file does not contain a valid PDF signature.');
+  }
+  if (ext === '.docx' && !(buffer[0] === 0x50 && buffer[1] === 0x4b && buffer[2] === 0x03 && buffer[3] === 0x04)) {
+    throw new Error('The uploaded file does not contain a valid DOCX archive.');
   }
 
   let extractedText = '';

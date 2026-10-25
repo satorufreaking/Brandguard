@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { MOCK_AUDIT_LOGS, fetchAuditAPI } from '../api';
+import { fetchAuditAPI } from '../api';
 import { History, Shield, ArrowRight, Clock, User, ShieldCheck } from 'lucide-react';
 
 export default function AuditPage() {
-  const [auditEvents, setAuditEvents] = useState(MOCK_AUDIT_LOGS);
-  const [isLoading, setIsLoading] = useState(false);
+  const [auditEvents, setAuditEvents] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     async function loadAudit() {
@@ -12,8 +13,9 @@ export default function AuditPage() {
       try {
         const data = await fetchAuditAPI();
         if (Array.isArray(data)) setAuditEvents(data);
+        setError('');
       } catch (err) {
-        console.warn('Audit fetch error:', err.message);
+        setError(`Unable to load the audit trail: ${err.message}`);
       } finally {
         setIsLoading(false);
       }
@@ -22,7 +24,7 @@ export default function AuditPage() {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
+    <div className="max-w-4xl mx-auto p-3 sm:p-6 space-y-6">
       {/* Header */}
       <div className="pb-4 border-b border-slate-200 flex items-center justify-between">
         <div>
@@ -36,6 +38,10 @@ export default function AuditPage() {
           Immutable Log (No Edit / Delete)
         </span>
       </div>
+
+      {error && <p role="alert" className="p-3 rounded border border-rose-200 bg-rose-50 text-xs text-rose-800">{error}</p>}
+      {isLoading && <p className="text-xs text-slate-500">Loading audit history...</p>}
+      {!isLoading && !error && auditEvents.length === 0 && <p className="p-5 bg-white rounded border border-slate-200 text-xs text-slate-500">No audit events have been recorded.</p>}
 
       {/* Vertical Timeline, Newest First */}
       <div className="relative pl-6 border-l-2 border-slate-200 space-y-6">

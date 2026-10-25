@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { X, Shield, BookOpen, AlertCircle, AlertTriangle, Info, Check } from 'lucide-react';
 import { MOCK_RULES_DATA } from '../api';
 
-export default function RuleDrawer({ ruleId, isOpen, onClose, triggerRef, onSaveRule }) {
+export default function RuleDrawer({ ruleId, rule: selectedRule, isOpen, onClose, triggerRef }) {
   const closeBtnRef = useRef(null);
-  const rule = ruleId ? MOCK_RULES_DATA.find((r) => r.id === ruleId) : null;
+  const rule = selectedRule || (ruleId ? MOCK_RULES_DATA.find((r) => r.id === ruleId) : null);
 
   // Accessible Escape key and focus restoration
   useEffect(() => {
@@ -128,8 +128,10 @@ export default function RuleDrawer({ ruleId, isOpen, onClose, triggerRef, onSave
             {/* Status */}
             <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
               <span className="text-slate-500">Active in Workspace Policy:</span>
-              <span className="font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                Enabled
+              <span className={`font-semibold px-2 py-0.5 rounded border ${
+                rule.active ? 'text-emerald-700 bg-emerald-50 border-emerald-200' : 'text-slate-600 bg-slate-100 border-slate-300'
+              }`}>
+              {rule.active ? 'Enabled' : 'Disabled'}
               </span>
             </div>
           </div>

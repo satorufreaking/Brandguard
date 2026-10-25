@@ -11,6 +11,7 @@ export default function FindingCard({
   onAccept,
   onOpenDismiss,
   onRestore,
+  readOnly = false,
 }) {
   const chipRef = useRef(null);
   const dismissBtnRef = useRef(null);
@@ -119,7 +120,7 @@ export default function FindingCard({
       )}
 
       {/* 8. [Accept] and [Dismiss] buttons */}
-      <div className="pt-2 border-t border-slate-100 flex items-center justify-end gap-2">
+      {!readOnly && <div className="pt-2 border-t border-slate-100 flex items-center justify-end gap-2">
         {finding.status === 'active' ? (
           <>
             <button
@@ -158,7 +159,7 @@ export default function FindingCard({
             <RotateCcw className="w-3.5 h-3.5" /> Restore Finding
           </button>
         )}
-      </div>
+      </div>}
     </article>
   );
 }
