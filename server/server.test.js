@@ -31,6 +31,18 @@ describe('BrandGuard Backend REST API & Persistence Tests', () => {
     expect(res.body.database).toBeDefined();
   });
 
+  it('allows the Vercel frontend CORS preflight with its custom headers', async () => {
+    const res = await request(app)
+      .options('/api/reviews/run')
+      .set('Origin', 'https://brandguard-xi.vercel.app')
+      .set('Access-Control-Request-Method', 'POST')
+      .set('Access-Control-Request-Headers', 'content-type,x-brandguard-role');
+
+    expect(res.status).toBe(204);
+    expect(res.headers['access-control-allow-origin']).toBe('https://brandguard-xi.vercel.app');
+    expect(res.headers['access-control-allow-headers']).toBe('content-type,x-brandguard-role');
+  });
+
   // 2. Rules retrieval & category filter
   it('GET /api/rules returns seeded brand rules', async () => {
     const res = await request(app).get('/api/rules').set('x-brandguard-role', 'creator');
